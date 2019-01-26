@@ -73,6 +73,8 @@ public class GhostMovement : MonoBehaviour
             Destroy(nav.gameObject);
         }
         nav = Instantiate(room.GetComponent<Navigator>().navigator).transform;
+        NavMeshSurface navMeshSurface = nav.GetComponent<NavMeshSurface>();
+        navMeshSurface.BuildNavMesh();
         agent = nav.GetComponentInChildren<NavMeshAgent>();
         agent.transform.position = RoomToNav(transform.position);
     }
