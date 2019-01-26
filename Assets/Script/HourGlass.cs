@@ -24,12 +24,12 @@ public class HourGlass : InteractItem
         if (Input.GetKeyDown(KeyCode.P))
         {
             //Debug.Log("inputGet");
-            interacted();
+            Interact();
             
         }
     }
 
-    override public void interacted()
+    override public void Interact()
     {
        // Debug.Log("Coroutine start");
         StartCoroutine("PausedTime");

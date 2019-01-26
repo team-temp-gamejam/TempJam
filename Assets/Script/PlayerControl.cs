@@ -94,89 +94,106 @@ public class PlayerControl : MonoBehaviour
     {
         direction = Vector2.zero;
         //for player 1
-        if (player == 1)
-        {
-            if (Input.GetButton("p1Up"))
-            {
-                direction += Vector2.up;
-            }
-            if (Input.GetButton("p1Right"))
-            {
-                direction += Vector2.right;
-            }
-            if (Input.GetButton("p1Left"))
-            {
-                direction += Vector2.left;
-            }
-            if (Input.GetButton("p1Down"))
-            {
-                direction += Vector2.down;
-            }
-        }
+        // if (player == 1)
+        // {
+        //     if (Input.GetButton("p1Up"))
+        //     {
+        //         direction += Vector2.up;
+        //     }
+        //     if (Input.GetButton("p1Right"))
+        //     {
+        //         direction += Vector2.right;
+        //     }
+        //     if (Input.GetButton("p1Left"))
+        //     {
+        //         direction += Vector2.left;
+        //     }
+        //     if (Input.GetButton("p1Down"))
+        //     {
+        //         direction += Vector2.down;
+        //     }
+        // }
 
-        //player 2
-        if (player == 2)
-        {
-            if (Input.GetButton("p2Up"))
-            {
-                direction += Vector2.up;
-            }
-            if (Input.GetButton("p2Right"))
-            {
-                direction += Vector2.right;
-            }
-            if (Input.GetButton("p2Left"))
-            {
-                direction += Vector2.left;
-            }
-            if (Input.GetButton("p2Down"))
-            {
-                direction += Vector2.down;
-            }
+        // //player 2
+        // if (player == 2)
+        // {
+        //     if (Input.GetButton("p2Up"))
+        //     {
+        //         direction += Vector2.up;
+        //     }
+        //     if (Input.GetButton("p2Right"))
+        //     {
+        //         direction += Vector2.right;
+        //     }
+        //     if (Input.GetButton("p2Left"))
+        //     {
+        //         direction += Vector2.left;
+        //     }
+        //     if (Input.GetButton("p2Down"))
+        //     {
+        //         direction += Vector2.down;
+        //     }
           
-        }
+        // }
 
-        //player 3
-        if (player == 3)
-        {
-            if (Input.GetButton("p3Up"))
-            {
-                direction += Vector2.up;
-            }
-            if (Input.GetButton("p3Right"))
-            {
-                direction += Vector2.right;
-            }
-            if (Input.GetButton("p3Left"))
-            {
-                direction += Vector2.left;
-            }
-            if (Input.GetButton("p3Down"))
-            {
-                direction += Vector2.down;
-            }
-        }
+        // //player 3
+        // if (player == 3)
+        // {
+        //     if (Input.GetButton("p3Up"))
+        //     {
+        //         direction += Vector2.up;
+        //     }
+        //     if (Input.GetButton("p3Right"))
+        //     {
+        //         direction += Vector2.right;
+        //     }
+        //     if (Input.GetButton("p3Left"))
+        //     {
+        //         direction += Vector2.left;
+        //     }
+        //     if (Input.GetButton("p3Down"))
+        //     {
+        //         direction += Vector2.down;
+        //     }
+        // }
 
-        //player 4
-        if (player == 4)
-        {
-            if (Input.GetButton("p4Up"))
-            {
-                direction += Vector2.up;
-            }
-            if (Input.GetButton("p4Right"))
-            {
-                direction += Vector2.right;
-            }
-            if (Input.GetButton("p4Left"))
-            {
-                direction += Vector2.left;
-            }
-            if (Input.GetButton("p4Down"))
-            {
-                direction += Vector2.down;
-            }
+        // //player 4
+        // if (player == 4)
+        // {
+        //     if (Input.GetButton("p4Up"))
+        //     {
+        //         direction += Vector2.up;
+        //     }
+        //     if (Input.GetButton("p4Right"))
+        //     {
+        //         direction += Vector2.right;
+        //     }
+        //     if (Input.GetButton("p4Left"))
+        //     {
+        //         direction += Vector2.left;
+        //     }
+        //     if (Input.GetButton("p4Down"))
+        //     {
+        //         direction += Vector2.down;
+        //     }
            
+        // }
+
+         if (Input.GetButton("p"+player+"Up"))
+        {
+            direction += Vector2.up;
+        }
+        if (Input.GetButton("p"+player+"Right"))
+        {
+            direction += Vector2.right;
+        }
+        if (Input.GetButton("p"+player+"Left"))
+        {
+            direction += Vector2.left;
+        }
+        if (Input.GetButton("p"+player+"Down"))
+        {
+            direction += Vector2.down;
         }
     }
     
@@ -190,5 +207,17 @@ public class PlayerControl : MonoBehaviour
     public void Action()
     {
 
+    }
+
+    public void SetInteractItem(GameObject item) {
+        
+    }
+
+
+    private void OnTriggerStay2D(Collider2D col) {
+        if (Input.GetButtonDown("p"+player+"Action")) {
+            if (col.gameObject.tag == "Interactable")     
+                col.gameObject.GetComponent<InteractItem>().Interact();
+        }
     }
 }
