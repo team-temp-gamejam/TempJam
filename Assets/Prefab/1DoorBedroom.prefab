@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 8574936213869393942}
   - component: {fileID: 7782465820566195792}
   - component: {fileID: 4817430554418328085}
+  - component: {fileID: 119789247062190755}
   m_Layer: 0
   m_Name: 1DoorBedroom
   m_TagString: Untagged
@@ -523,6 +524,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2004333, y: 0.9525475}
   m_EdgeRadius: 0
+--- !u!114 &119789247062190755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282635941036839876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  upDoor: {fileID: 0}
+  downDoor: {fileID: 0}
 --- !u!1 &6418995652064488235
 GameObject:
   m_ObjectHideFlags: 0

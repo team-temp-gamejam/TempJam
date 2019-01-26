@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 2206176753775689320}
   - component: {fileID: 3581149812372871958}
   - component: {fileID: 2615939214420848964}
+  - component: {fileID: 6875083096457812310}
   m_Layer: 0
   m_Name: 3DoorsCeremonialRoom
   m_TagString: Untagged
@@ -434,6 +435,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0397005, y: 3.184585}
   m_EdgeRadius: 0
+--- !u!114 &6875083096457812310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973529691718270169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  upDoor: {fileID: 0}
+  downDoor: {fileID: 0}
 --- !u!1 &6563531748341333776
 GameObject:
   m_ObjectHideFlags: 0

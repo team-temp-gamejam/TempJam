@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 1936331663505227282}
   - component: {fileID: 4470197965604765484}
   - component: {fileID: 6695453252062551238}
+  - component: {fileID: 896431826337985979}
   m_Layer: 0
   m_Name: 1DoorGarden
   m_TagString: Untagged
@@ -537,6 +538,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.1785088, y: 1.0376711}
   m_EdgeRadius: 0
+--- !u!114 &896431826337985979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283190028823629624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  upDoor: {fileID: 0}
+  downDoor: {fileID: 0}
 --- !u!1001 &2985751889035952550
 PrefabInstance:
   m_ObjectHideFlags: 0

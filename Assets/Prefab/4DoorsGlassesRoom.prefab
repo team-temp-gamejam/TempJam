@@ -1305,6 +1305,7 @@ GameObject:
   - component: {fileID: 7191717662402780390}
   - component: {fileID: 5350940920019567106}
   - component: {fileID: 2083908891672558543}
+  - component: {fileID: 3953785308727240835}
   m_Layer: 0
   m_Name: 4DoorsGlassesRoom
   m_TagString: Untagged
@@ -1592,6 +1593,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.157111, y: 1.0657368}
   m_EdgeRadius: 0
+--- !u!114 &3953785308727240835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116775098039326180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  upDoor: {fileID: 0}
+  downDoor: {fileID: 0}
 --- !u!1 &8390236916075944741
 GameObject:
   m_ObjectHideFlags: 0

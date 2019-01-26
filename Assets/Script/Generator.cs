@@ -360,7 +360,7 @@ public class Generator : MonoBehaviour
         List<float> startPosition = new List<float>();
 
         startPosition.Add(180.0f);
-        startPosition.Add(180.0f);
+        startPosition.Add(90.0f);
         startPosition.Add(90.0f);
         startPosition.Add(180.0f);
         startPosition.Add(0.0f);
@@ -375,7 +375,8 @@ public class Generator : MonoBehaviour
                 Debug.Log((int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme);
                 prefabedRoom = roomPrefabs[(int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme];
 
-                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 0), Quaternion.Euler(0, 0, (-90) * (map[i][j].type % 4)), mapObject.transform);
+                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 10), Quaternion.Euler(0, 0, - startPosition[map[i][j].type % 4] + (-90) * (map[i][j].type % 4)), mapObject.transform);
+                roomObject.GetComponent<RoomScript>().setTilePosition(i, j);
                 map[i][j].interior = roomObject;
             }
         }
