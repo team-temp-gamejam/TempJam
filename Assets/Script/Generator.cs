@@ -401,6 +401,16 @@ public class Generator : MonoBehaviour
         return result;
     }
 
+    public List<Vector2> GetPlayerSpawn()
+    {
+        List<Vector2> result = new List<Vector2>();
+        for (int i = 0; i < 4; i++)
+        {
+            result.Add(new Vector2(playerStart[i][0], playerStart[i][1]));
+        }
+        return result;
+    }
+
     void Start()
     {
 
