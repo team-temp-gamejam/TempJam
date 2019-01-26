@@ -6,12 +6,12 @@ public class GhostMovement : MonoBehaviour
 {
     public float speed;
 
-    private Vector2Int destination;
+    public Vector2Int destination;
     private List<List<Room>> map;
     private Vector2Int position;
     private GameObject room;
     private Vector2[] doorPositions = new Vector2[4];
-    public int direction;
+    public List<int> direction = new List<int>();
     private Rigidbody2D rg;
 
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class GhostMovement : MonoBehaviour
     {
         position = new Vector2Int();
         rg = GetComponent<Rigidbody2D>();
+        SetDestination(destination);
     }
 
     // Update is called once per frame
@@ -29,7 +30,10 @@ public class GhostMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rg.MovePosition(rg.position + (doorPositions[direction] - rg.position).normalized * speed * Time.deltaTime);
+        if (direction.Count > 0)
+        {
+            rg.MovePosition(rg.position + (doorPositions[direction[0]] - rg.position).normalized * speed * Time.deltaTime);
+        }
     }
 
     public void SetMap(List<List<Room>> map)
@@ -42,7 +46,7 @@ public class GhostMovement : MonoBehaviour
     public void CrossRoom()
     {
         Vector2Int displacement = new Vector2Int();
-        switch (direction)
+        switch (direction[0])
         {
             case 0:
                 displacement = new Vector2Int(0, 1);
@@ -59,6 +63,7 @@ public class GhostMovement : MonoBehaviour
             default:
                 break;
         }
+        direction.RemoveAt(0);
         transform.position += new Vector3(displacement.x * 4, displacement.y * 4);
 
         position += displacement;
@@ -121,10 +126,102 @@ public class GhostMovement : MonoBehaviour
     public void SetDestination(Vector2Int destination)
     {
         this.destination = destination;
-
+        direction = ShortestPath(map[position.x][position.y], map[destination.x][destination.y]);
     }
 
-    // List<int> ShortestPath(Vector2Int source, Vector2Int destination) {
+    List<int> ShortestPath(Room source, Room destination)
+    {
+        List<Room> traversed = new List<Room>();
+        List<List<Room>> path = new List<List<Room>>();
+        List<Room> resultPath = new List<Room>();
+        traversed.Add(source);
+        List<Room> firstPath = new List<Room>();
+        firstPath.Add(source);
+        path.Add(firstPath);
 
-    // }
+        List<Room> currentPath;
+        Room currentRoom;
+        Room currentUp;
+        Room currentRight;
+        Room currentDown;
+        Room currentLeft;
+        while (true)
+        {
+            currentPath = path[0];
+            path.RemoveAt(0);
+            currentRoom = currentPath[currentPath.Count - 1];
+            currentPath.Add(new Room());
+            if (currentRoom.upActive && !traversed.Contains(currentRoom.up))
+            {
+                currentUp = currentRoom.up;
+                currentPath[currentPath.Count - 1] = currentUp;
+                if (currentUp == destination)
+                {
+                    resultPath = new List<Room>(currentPath);
+                    break;
+                }
+                path.Add(new List<Room>(currentPath));
+            }
+            if (currentRoom.rightActive && !traversed.Contains(currentRoom.right))
+            {
+                currentRight = currentRoom.right;
+                currentPath[currentPath.Count - 1] = currentRight;
+                if (currentRight == destination)
+                {
+                    resultPath = new List<Room>(currentPath);
+                    break;
+                }
+                path.Add(new List<Room>(currentPath));
+            }
+            if (currentRoom.downActive && !traversed.Contains(currentRoom.down))
+            {
+                currentDown = currentRoom.down;
+                currentPath[currentPath.Count - 1] = currentDown;
+                if (currentDown == destination)
+                {
+                    resultPath = new List<Room>(currentPath);
+                    break;
+                }
+                path.Add(new List<Room>(currentPath));
+            }
+            if (currentRoom.leftActive && !traversed.Contains(currentRoom.left))
+            {
+                currentLeft = currentRoom.left;
+                currentPath[currentPath.Count - 1] = currentLeft;
+                if (currentLeft == destination)
+                {
+                    resultPath = new List<Room>(currentPath);
+                    break;
+                }
+                path.Add(new List<Room>(currentPath));
+            }
+        }
+
+        List<int> result = new List<int>();
+        Room current;
+        Room previous;
+        for (int i = 1; i < resultPath.Count; i++)
+        {
+            current = resultPath[i];
+            previous = resultPath[i - 1];
+            if (current.up == previous)
+            {
+                result.Add(2);
+            }
+            else if (current.right == previous)
+            {
+                result.Add(3);
+            }
+            else if (current.down == previous)
+            {
+                result.Add(0);
+            }
+            else if (current.left == previous)
+            {
+                result.Add(1);
+            }
+        }
+
+        return result;
+    }
 }
