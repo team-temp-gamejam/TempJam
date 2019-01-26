@@ -46,8 +46,10 @@ public class DoorScript : MonoBehaviour
         }
 
         // move player to other room
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player") {
+            col.gameObject.GetComponent<PlayerControl>().SetCurrentRoom(nextRoom.GetComponent<RoomScript>().getTilePosition());
             col.gameObject.transform.position =  nextDoor.GetComponent<DoorScript>().spawnPoint.transform.position;
+        }
     }
 
 }

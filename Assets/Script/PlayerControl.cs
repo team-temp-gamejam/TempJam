@@ -7,14 +7,26 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
     private int player;
+    [SerializeField]
     private float speed = 2;
 
     private Vector2 direction;
+    [SerializeField]
+    private Vector2 currentRoom;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    //need to set currentRoom once at spawning player
+    public void SetCurrentRoom(Vector2 position) {
+        currentRoom = position;
+    }
+
+    public Vector2 GetCurrentRoom() {
+        return currentRoom;
     }
 
     // Update is called once per frame
