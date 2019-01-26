@@ -16,11 +16,18 @@ public class GameManagers : MonoBehaviour
         map = mapGenerator.map;
         ghostMovement.SetMap(map);
         ghostMovement.SetDestination(ghostMovement.destination);
+        /*ghostMovement.isChasing = true;
+        ghostMovement.target = new Vector2(-2, -2);*/
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        /*if (Input.GetKeyUp(KeyCode.A))
+        {
+            ghostMovement.isChasing = !ghostMovement.isChasing;
+        }*/
     }
+
+
 }

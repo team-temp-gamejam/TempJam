@@ -63,7 +63,7 @@ public class DoorScript : MonoBehaviour
         // else if (col.gameObject.tag == "Ghost")
         // {
         //     col.gameObject.GetComponent<GhostMovement>().CrossRoom(nextDoor.GetComponent<DoorScript>().spawnPoint.transform.position);
-        // }
+        // }    
     }
 
     public void DoorFlip() {
