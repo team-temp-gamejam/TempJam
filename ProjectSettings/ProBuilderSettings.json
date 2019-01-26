@@ -13,6 +13,14 @@
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+<<<<<<< HEAD
+=======
+                "key": "lightmapping.autoUnwrapLightmapUV",
+                "value": "{\"m_Value\":true}"
+            },
+            {
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+>>>>>>> 13906468b35e74a7509253673b41dd0e142a0b8a
                 "key": "entity.detailVisible",
                 "value": "{\"m_Value\":true}"
             },

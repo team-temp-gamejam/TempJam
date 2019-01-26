@@ -9,9 +9,12 @@ public class MapManager : MonoBehaviour
 
     public GameObject[] roomPrefab;
 
-    private List<List<GameObject>> room;
+    // private List<List<GameObject>> room;
+    public List<GameObject> room;
+    
 
     public GameObject GetRoom(int row, int column) {
-        return room[row][column];
+        // return room[row][column];
+        return room[row*width + column];
     }
 }
