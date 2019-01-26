@@ -11,6 +11,9 @@ public class HourGlass : InteractItem
     [SerializeField]
     private int timePlus;
 
+    [SerializeField]
+    private AudioSource stopTime;
+
     private float ghostOriginalSpeed;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class HourGlass : InteractItem
         if (Input.GetKeyDown(KeyCode.P))
         {
             //Debug.Log("inputGet");
+            stopTime.Play();
             Interact();
             
         }

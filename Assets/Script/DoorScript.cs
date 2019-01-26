@@ -11,6 +11,8 @@ public class DoorScript : MonoBehaviour
     private bool isLock;
     private Animator animator;
     public GameObject DoorBound;
+    [SerializeField]
+    private AudioSource doorClose, doorLock, doorOpen;
 
     private void Start()
     {
@@ -55,6 +57,7 @@ public class DoorScript : MonoBehaviour
 
         // move player to other room
         if (col.gameObject.tag == "Player" && !isLock) {
+            //doorOpen.Play();
             col.gameObject.GetComponent<PlayerControl>().SetCurrentRoom(nextRoom.GetComponent<RoomScript>().getTilePosition());
             col.gameObject.transform.position =  nextDoor.GetComponent<DoorScript>().spawnPoint.transform.position;
             DoorFlip();
@@ -68,6 +71,7 @@ public class DoorScript : MonoBehaviour
 
     public void DoorFlip() {
         animator.SetTrigger("PassDoor");
+        doorOpen.Play();
     }
 
     public void SetDoorLock(bool isLock) {
@@ -75,9 +79,12 @@ public class DoorScript : MonoBehaviour
         if (this.isLock != isLock) {
             this.isLock = isLock;
             animator.SetBool("isLock", isLock);
+            if (isLock) doorClose.Play();
+            else doorLock.Play();
             nextDoor.GetComponent<DoorScript>().SetDoorLock(isLock);
             DoorBound.SetActive(isLock);
         }
+
     }
 
     public bool isDoorLock() {
@@ -106,5 +113,6 @@ public class DoorScript : MonoBehaviour
 
         
     }
+
 
 }

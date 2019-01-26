@@ -13,13 +13,18 @@ public class PlayerControl : MonoBehaviour
     private Vector2 direction;
     [SerializeField]
     private Vector2 currentRoom;
-
+    [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    private AudioSource footStep, lockerClose, lockerOpenShake, lockerOpen, lockerShake, pickUp, wink;
+
+    private bool stepping;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        stepping = false;
     }
 
     //need to set currentRoom once at spawning player
@@ -37,24 +42,35 @@ public class PlayerControl : MonoBehaviour
         
         GetMoveInput();
         Move();
-        if (Input.GetButtonDown("p"+player+"Rotate"))
+        if (stepping)
+        {
+            StartCoroutine("footStepSound");
+        }
+        else StopAllCoroutines();
+        if (Input.GetButtonDown("p" + player + "Rotate"))
         {
             Rotate();
         }
-        if (Input.GetButtonDown("p"+player+"Action"))
+        stepping = false;
+        /*
+        else
         {
-            Action();
+            StopCoroutine("footStepSound");
         }
+        */
     }
 
     //move
     public void Move()
     {
+        
         if (direction.sqrMagnitude > 1)
         {
             direction = direction.normalized;
         }
         transform.Translate(direction * speed * Time.deltaTime);
+        
+        
     }
 
     //input for moving
@@ -67,6 +83,7 @@ public class PlayerControl : MonoBehaviour
          if (Input.GetButton("p"+player+"Up"))
         {
             direction += Vector2.up;
+            stepping = true;
             anim.SetBool("isWalk" , true);
             anim.SetBool("FaceUp" , true);
             
@@ -77,6 +94,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton("p"+player+"Right"))
         {
             direction += Vector2.right;
+            stepping = true;
             anim.SetBool("isWalk" , true);
             anim.SetBool("FaceRight" , true);
             
@@ -87,6 +105,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton("p"+player+"Left"))
         {
             direction += Vector2.left;
+            stepping = true;
             anim.SetBool("isWalk" , true);
             anim.SetBool("FaceLeft" , true);
             
@@ -97,6 +116,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton("p"+player+"Down"))
         {
             direction += Vector2.down;
+            stepping = true;
             anim.SetBool("isWalk" , true);
             anim.SetBool("FaceDown" , true);
             
@@ -112,12 +132,14 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    //interaction
-    public void Action()
+    IEnumerator footStepSound()
     {
-
+        while (!footStep.isPlaying)
+        {
+            footStep.Play();
+        }
+        yield return 0;
     }
-
 
     private void OnTriggerStay2D(Collider2D col) {
         if (Input.GetButtonDown("p"+player+"Action")) {
