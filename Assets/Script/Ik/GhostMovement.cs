@@ -36,7 +36,7 @@ public class GhostMovement : MonoBehaviour
         {
             // rg.MovePosition(rg.position + (doorPositions[direction[0]] - rg.position).normalized * speed * Time.deltaTime);
             agent.SetDestination(RoomToNav(doorPositions[direction[0]]));
-            Debug.Log(RoomToNav(doorPositions[direction[0]]));
+            //Debug.Log(RoomToNav(doorPositions[direction[0]]));
             transform.position = NavToRoom(agent.transform.position);
         }
     }
@@ -63,7 +63,7 @@ public class GhostMovement : MonoBehaviour
     private Vector3 RoomToNav(Vector3 pos)
     {
         Vector3 vector = Quaternion.Euler(0, 0, 90 * (map[position.x][position.y].type % 4)) * (pos - room.transform.position);
-        Debug.Log(vector);
+        //Debug.Log(vector);
         Vector3 navRoot = nav.transform.position;
         return new Vector3(vector.x + navRoot.x, 0, vector.y + navRoot.z);
     }

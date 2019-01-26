@@ -17,11 +17,11 @@ public class Room
 
     public int GetRoomType()
     {
-        if(roomType == -1)
+        if(type == -1)
         {
-            this.roomType = this.ToRoomType();
+            this.type = this.ToRoomType();
         }
-        return this.roomType;
+        return this.type;
     }
 
     public int ToRoomType()
