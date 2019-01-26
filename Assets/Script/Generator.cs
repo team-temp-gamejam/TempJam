@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room
 {
+    public GameObject interior;
     public Room left;
     public Room right;
     public Room up;
@@ -134,8 +135,10 @@ public class Generator : MonoBehaviour
     private HashSet<Room> linked = new HashSet<Room>();
     private List<Room> linkable = new List<Room>();
     public float linkRate;
-    // Start is called before the first frame update
-    void Start()
+
+    public List<List<int>> playerStart = new List<List<int>>();
+
+    public void Generate()
     {
         for(int i = 0; i < dimension; i++)
         {
@@ -266,9 +269,9 @@ public class Generator : MonoBehaviour
                     Instantiate(cylinder, new Vector3(i + 0.5f, j), Quaternion.Euler(0,0,90));
                 }
             }
-        }
+        }*/
 
-        List<List<int>> result = GetRoomTypes();
+        /*List<List<int>> result = GetRoomTypes();
         for (int i = 0; i < dimension; i++)
         {
             string output = "";
@@ -277,6 +280,50 @@ public class Generator : MonoBehaviour
                 output += result[i][j] + " ";
             }
             Debug.Log(output);
+        }*/
+
+        List<Room> spawnable = new List<Room>();
+        for (int i = 0; i < dimension; i++)
+        {
+            for (int j = 0; j < dimension; j++)
+            {
+                spawnable.Add(map[i][j]);
+            }
+        }
+
+        playerStart.Add(new List<int>());
+        playerStart.Add(new List<int>());
+        playerStart.Add(new List<int>());
+        playerStart.Add(new List<int>());
+        for(int player = 0;player < 4; player++)
+        {
+            Room selected = spawnable[Random.Range(0, spawnable.Count)];
+            for (int i = 0; i < dimension; i++)
+            {
+                for (int j = 0; j < dimension; j++)
+                {
+                    if(map[i][j] == selected)
+                    {
+                        playerStart[player].Add(i);
+                        playerStart[player].Add(j);
+                    }
+                }
+            }
+            for (int i = -GetDistance(); i < GetDistance(); i++)
+            {
+                for (int j = -GetDistance(); j < GetDistance(); j++)
+                {
+                    if (Mathf.Abs(i) + Mathf.Abs(j) <= GetDistance() && i + playerStart[player][0] < dimension && i + playerStart[player][0] >= 0 && j + playerStart[player][1] < dimension && j + playerStart[player][1] >= 0)
+                    {
+                        spawnable.Remove(map[i + playerStart[player][0]][j + playerStart[player][1]]);
+                    }
+                }
+            }
+        }
+
+        /*for(int i = 0; i < 4; i++)
+        {
+            Instantiate(cube, new Vector3(playerStart[i][0] + 0.5f, playerStart[i][1] + 0.5f), Quaternion.identity);
         }*/
     }
 
@@ -288,6 +335,16 @@ public class Generator : MonoBehaviour
     private int CountRoom(int dimension)
     {
         return dimension * dimension;
+    }
+
+    private int GetDistance()
+    {
+        if (dimension == 3)
+            return 0;
+        else
+        {
+            return (dimension - 1) / 2;
+        }
     }
 
     public List<List<int>> GetRoomTypes()
@@ -302,6 +359,11 @@ public class Generator : MonoBehaviour
             }
         }
         return result;
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
