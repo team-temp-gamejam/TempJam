@@ -6,6 +6,7 @@ public class RoomScript : MonoBehaviour
 {
     [SerializeField]
     private int row, column;
+    public int RoomType;
 
     public GameObject leftDoor, rightDoor, upDoor, downDoor;
 
