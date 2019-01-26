@@ -360,10 +360,10 @@ public class Generator : MonoBehaviour
         List<float> startPosition = new List<float>();
 
         startPosition.Add(180.0f);
-        startPosition.Add(90.0f);
+        startPosition.Add(180.0f);
         startPosition.Add(90.0f);
         startPosition.Add(180.0f);
-        startPosition.Add(0.0f);
+        startPosition.Add(180.0f);
 
         for (int i = 0; i < dimension; i++)
         {
@@ -372,11 +372,11 @@ public class Generator : MonoBehaviour
                 GameObject prefabedRoom;
                 
                 int roomTheme = Random.Range(0, 2);
-                Debug.Log((int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme);
                 prefabedRoom = roomPrefabs[(int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme];
-
-                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 10), Quaternion.Euler(0, 0, - startPosition[map[i][j].type % 4] + (-90) * (map[i][j].type % 4)), mapObject.transform);
-                roomObject.GetComponent<RoomScript>().setTilePosition(i, j);
+                // - startPosition[map[i][j].type % 4] + 
+                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 10), Quaternion.Euler(0, 0, startPosition[(int)Mathf.Floor(map[i][j].type/4)] + (-90) * (map[i][j].type % 4)), mapObject.transform);
+                roomObject.GetComponent<RoomScript>().setTilePosition(j, i);
+                roomObject.GetComponent<RoomScript>().RoomType = map[i][j].type;
                 map[i][j].interior = roomObject;
             }
         }

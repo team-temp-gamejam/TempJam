@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2733648667293516563}
   - component: {fileID: 5841308250925796283}
   - component: {fileID: 918320564934596015}
-  - component: {fileID: 7271469336268807584}
   - component: {fileID: 2848811509757823498}
   - component: {fileID: 6410981686731634882}
   - component: {fileID: 6766085831240113136}
@@ -281,32 +280,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.1703355, y: 0.9790292}
   m_EdgeRadius: 0
---- !u!61 &7271469336268807584
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816918184826022282}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7, y: 7}
-    newSize: {x: 7, y: 7}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7, y: 7}
-  m_EdgeRadius: 0
 --- !u!61 &2848811509757823498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -373,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   column: 0
+  RoomType: 0
   leftDoor: {fileID: 0}
   rightDoor: {fileID: 0}
   upDoor: {fileID: 0}
