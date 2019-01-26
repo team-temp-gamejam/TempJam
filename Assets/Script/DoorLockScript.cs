@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractItem : MonoBehaviour
+public class DoorLockScript : InteractItem
 {
-    
-    protected bool interactable;
-
     // Start is called before the first frame update
     void Start()
     {
-        interactable = true;
         
     }
 
@@ -20,5 +16,8 @@ public abstract class InteractItem : MonoBehaviour
         
     }
 
-    public abstract void Interact();
+    override public void Interact() {
+        DoorScript door = transform.parent.GetComponent<DoorScript>();
+        door.SetDoorLock(!door.isDoorLock());
+    }
 }
