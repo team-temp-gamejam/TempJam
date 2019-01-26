@@ -310,9 +310,9 @@ public class Generator : MonoBehaviour
                     }
                 }
             }
-            for (int i = -GetDistance(); i < GetDistance(); i++)
+            for (int i = -GetDistance(); i <= GetDistance(); i++)
             {
-                for (int j = -GetDistance(); j < GetDistance(); j++)
+                for (int j = -GetDistance(); j <= GetDistance(); j++)
                 {
                     if (Mathf.Abs(i) + Mathf.Abs(j) <= GetDistance() && i + playerStart[player][0] < dimension && i + playerStart[player][0] >= 0 && j + playerStart[player][1] < dimension && j + playerStart[player][1] >= 0)
                     {
