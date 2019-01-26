@@ -11,7 +11,7 @@ public abstract class InteractItem : MonoBehaviour
     void Start()
     {
         interactable = true;
-        
+        gameObject.tag = "Interactable";
     }
 
     // Update is called once per frame
