@@ -284,8 +284,9 @@ GameObject:
   - component: {fileID: 476732623}
   - component: {fileID: 476732622}
   - component: {fileID: 476732621}
-  - component: {fileID: 476732620}
   - component: {fileID: 476732624}
+  - component: {fileID: 476732625}
+  - component: {fileID: 476732620}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -293,19 +294,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &476732620
-BoxCollider:
+--- !u!50 &476732620
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476732619}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!23 &476732621
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -372,12 +381,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476732619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16d4b2be0bf9c4e4ab6040c1e819b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
+  speed: 2
+--- !u!114 &476732625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476732619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43dfc78e695cd3a4ea3c99676e39840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  destination: {x: 0, y: 0}
+  direction: 
 --- !u!1 &631307625
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +681,7 @@ GameObject:
   - component: {fileID: 1067436756}
   - component: {fileID: 1067436755}
   - component: {fileID: 1067436757}
+  - component: {fileID: 1067436758}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -736,8 +762,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca044fe32097ab24691c88c520351d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 10
+  timeLeft: 60
   timerText: {fileID: 1067436755}
+  timePaused: 0
+--- !u!114 &1067436758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067436753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d040311e12a9d804e9cb171fffe8eccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childrenTime: {fileID: 1067436757}
+  ghost: {fileID: 476732625}
+  timePlus: 0
 --- !u!1 &1217482678
 GameObject:
   m_ObjectHideFlags: 0
