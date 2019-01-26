@@ -468,6 +468,7 @@ MonoBehaviour:
   dimension: 10
   roomPrefabs: []
   linkRate: 0
+  drawer: {fileID: 1129377288}
 --- !u!4 &704604637
 Transform:
   m_ObjectHideFlags: 0
