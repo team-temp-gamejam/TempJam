@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GhostMovement : MonoBehaviour
 {
     public float speed;
-
+    public Vector2? chaseTarget;
     private Vector2Int destination;
     private List<List<Room>> map;
     private Vector2Int position;
@@ -29,7 +30,14 @@ public class GhostMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rg.MovePosition(rg.position + (doorPositions[direction] - rg.position).normalized * speed * Time.deltaTime);
+        if(chaseTarget == null)
+        {
+            rg.MovePosition(rg.position + (doorPositions[direction] - rg.position).normalized * speed * Time.deltaTime);
+        }
+        else
+        {
+            rg.MovePosition(rg.position + ((Vector2)chaseTarget - rg.position).normalized * speed * Time.deltaTime);
+        }
     }
 
     public void SetMap(List<List<Room>> map)
@@ -72,6 +80,7 @@ public class GhostMovement : MonoBehaviour
         Room roomMap = map[position.x][position.y];
 
         Vector2 doorPos = doors[0].transform.position;
+        doorPositions[0] = room.transform.position;
         if (roomMap.upActive)
         {
             foreach (DoorDummy door in doors)
@@ -83,6 +92,7 @@ public class GhostMovement : MonoBehaviour
             }
             doorPositions[0] = doorPos;
         }
+        doorPositions[1] = room.transform.position;
         if (roomMap.rightActive)
         {
             foreach (DoorDummy door in doors)
@@ -94,6 +104,7 @@ public class GhostMovement : MonoBehaviour
             }
             doorPositions[1] = doorPos;
         }
+        doorPositions[2] = room.transform.position;
         if (roomMap.downActive)
         {
             foreach (DoorDummy door in doors)
@@ -105,6 +116,7 @@ public class GhostMovement : MonoBehaviour
             }
             doorPositions[2] = doorPos;
         }
+        doorPositions[3] = room.transform.position;
         if (roomMap.leftActive)
         {
             foreach (DoorDummy door in doors)
@@ -122,6 +134,17 @@ public class GhostMovement : MonoBehaviour
     {
         this.destination = destination;
 
+    }
+
+    public void Engage(Vector2 target)
+    {
+        chaseTarget = target;
+    }
+
+    public void Disengage(Vector2Int lastVision)
+    {
+        destination = lastVision;
+        chaseTarget = null;
     }
 
     // List<int> ShortestPath(Vector2Int source, Vector2Int destination) {
