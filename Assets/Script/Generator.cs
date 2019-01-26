@@ -13,7 +13,7 @@ public class Room
     public bool rightActive = false;
     public bool upActive = false;
     public bool downActive = false;
-    private int roomType = -1;
+    public int type = -1;
 
     public int GetRoomType()
     {
@@ -26,6 +26,10 @@ public class Room
 
     public int ToRoomType()
     {
+        if (type >= 0)
+        {
+            return type;
+        }
         if (upActive)
         {
             if (downActive)
@@ -34,22 +38,22 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        return Random.Range(16, 20);
+                        type = Random.Range(16, 20);
                     }
                     else
                     {
-                        return 15;
+                        type = 15;
                     }
                 }
                 else
                 {
                     if (rightActive)
                     {
-                        return 13;
+                        type = 13;
                     }
                     else
                     {
-                        return Random.Range(0, 2) * 2 + 9;
+                        type = Random.Range(0, 2) * 2 + 9;
                     }
                 }
             }
@@ -59,22 +63,22 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        return 12;
+                        type = 12;
                     }
                     else
                     {
-                        return 4;
+                        type = 4;
                     }
                 }
                 else
                 {
                     if (rightActive)
                     {
-                        return 5;
+                        type = 5;
                     }
                     else
                     {
-                        return 0;
+                        type = 0;
                     }
                 }
             }
@@ -87,22 +91,22 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        return 14;
+                        type = 14;
                     }
                     else
                     {
-                        return 7;
+                        type = 7;
                     }
                 }
                 else
                 {
                     if (rightActive)
                     {
-                        return 6;
+                        type = 6;
                     }
                     else
                     {
-                        return 2;
+                        type = 2;
                     }
                 }
             }
@@ -112,26 +116,27 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        return Random.Range(0, 2) * 2 + 8;
+                        type = Random.Range(0, 2) * 2 + 8;
                     }
                     else
                     {
-                        return 3;
+                        type = 3;
                     }
                 }
                 else
                 {
                     if (rightActive)
                     {
-                        return 1;
+                        type = 1;
                     }
                     else
                     {
-                        return -1;
+                        type = -1;
                     }
                 }
             }
         }
+        return type;
     }
 }
 
@@ -350,12 +355,13 @@ public class Generator : MonoBehaviour
 
     private void GenerateObject(ref List<List<Room>> map)
     {
+        GetRoomTypes();
         GameObject mapObject = new GameObject("Map");
         for (int i = 0; i < dimension; i++)
         {
             for (int j = 0; j < dimension; j++)
             {
-                GameObject roomObject = Instantiate(interior, new Vector3(i * 11, j * 11, 0), Quaternion.identity, mapObject.transform);
+                GameObject roomObject = Instantiate(interior, new Vector3(i * 11, j * 11, 0), Quaternion.Euler(0, 0, (-90) * (map[i][j].type % 4)), mapObject.transform);
                 map[i][j].interior = roomObject;
             }
         }

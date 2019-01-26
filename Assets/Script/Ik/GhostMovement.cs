@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GhostMovement : MonoBehaviour
 {
     public float speed;
+    private NavMeshAgent agent;
+    private Transform nav;
 
     public Vector2Int destination;
     private List<List<Room>> map;
@@ -19,7 +22,6 @@ public class GhostMovement : MonoBehaviour
     {
         position = new Vector2Int();
         rg = GetComponent<Rigidbody2D>();
-        //SetDestination(destination);
     }
 
     // Update is called once per frame
@@ -32,7 +34,10 @@ public class GhostMovement : MonoBehaviour
     {
         if (direction.Count > 0)
         {
-            rg.MovePosition(rg.position + (doorPositions[direction[0]] - rg.position).normalized * speed * Time.deltaTime);
+            // rg.MovePosition(rg.position + (doorPositions[direction[0]] - rg.position).normalized * speed * Time.deltaTime);
+            agent.SetDestination(RoomToNav(doorPositions[direction[0]]));
+            Debug.Log(RoomToNav(doorPositions[direction[0]]));
+            transform.position = NavToRoom(agent.transform.position);
         }
     }
 
@@ -41,8 +46,36 @@ public class GhostMovement : MonoBehaviour
         this.map = map;
         room = map[position.x][position.y].interior;
         GetDoors();
+        SetNavAgent();
     }
 
+    public void SetNavAgent()
+    {
+        if (nav != null)
+        {
+            Destroy(nav.gameObject);
+        }
+        nav = Instantiate(room.GetComponent<Navigator>().navigator).transform;
+        agent = nav.GetComponentInChildren<NavMeshAgent>();
+        agent.transform.position = RoomToNav(transform.position);
+    }
+
+    private Vector3 RoomToNav(Vector3 pos)
+    {
+        Vector3 vector = Quaternion.Euler(0, 0, 90 * (map[position.x][position.y].type % 4)) * (pos - room.transform.position);
+        Debug.Log(vector);
+        Vector3 navRoot = nav.transform.position;
+        return new Vector3(vector.x + navRoot.x, 0, vector.y + navRoot.z);
+    }
+
+    private Vector3 NavToRoom(Vector3 pos)
+    {
+        Vector3 vector = Quaternion.Euler(0, 90 * (map[position.x][position.y].type % 4), 0) * (pos - nav.transform.position);
+        Vector3 roomRoot = room.transform.position;
+        return new Vector3(vector.x + roomRoot.x, vector.z + roomRoot.y, 0);
+    }
+
+    // public void CrossRoom(Vector3 warpPosition)
     public void CrossRoom()
     {
         Vector2Int displacement = new Vector2Int();
@@ -64,11 +97,13 @@ public class GhostMovement : MonoBehaviour
                 break;
         }
         direction.RemoveAt(0);
+        // transform.position = warpPosition;
         transform.position += new Vector3(displacement.x * 4, displacement.y * 4);
 
         position += displacement;
         room = map[position.x][position.y].interior;
         GetDoors();
+        SetNavAgent();
     }
 
     void GetDoors()
