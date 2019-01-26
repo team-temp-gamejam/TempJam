@@ -213,7 +213,7 @@ MonoBehaviour:
   dimension: 5
   interior: {fileID: 6396176707278790250, guid: 6f69e1a31cbf932499736f9b7808259b,
     type: 3}
-  linkRate: 1
+  linkRate: 0
 --- !u!4 &279976915
 Transform:
   m_ObjectHideFlags: 0
@@ -495,7 +495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  direction: 0
+  destination: {x: 2, y: 2}
+  direction: 
 --- !u!1 &1827375167
 GameObject:
   m_ObjectHideFlags: 0
