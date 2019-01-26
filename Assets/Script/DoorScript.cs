@@ -12,7 +12,8 @@ public class DoorScript : MonoBehaviour
     private Animator animator;
     public GameObject DoorBound;
 
-    private void Start() {
+    private void Start()
+    {
         // get local position, regardless of rotation
         //nextRoomPos is actually just direction vector to to other room 
         Vector2 positionFromParent = new Vector2 ((int)(transform.position.x - transform.parent.transform.position.x), (int)(transform.position.y - transform.parent.transform.position.y));
@@ -36,21 +37,18 @@ public class DoorScript : MonoBehaviour
                 nextRoomPos.y = -1;
                 currentRoom.downDoor = this.gameObject;
             }
-
-        
-        
         //get room location on map array from MapManager
         GameObject mapManager = GameObject.Find("MapManager");      //position in map array is stored in MapManager
         Vector2 tilePos = transform.parent.gameObject.GetComponent<RoomScript>().getTilePosition();
         nextRoom = mapManager.GetComponent<MapManager>().GetRoom((int)(tilePos.y + nextRoomPos.y), (int)(tilePos.x + nextRoomPos.x));
         nextRoomPos *= -1;          //this is flipped to get more understanding of the door that player will be warped to
-        
        
         DoorBound.SetActive(isLock);
         animator = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
+    void OnTriggerEnter2D(Collider2D col)
+    {
 
          //get object of corresponding door in adjacent room
         if (nextDoor == null) SetNextDoor();
@@ -62,6 +60,10 @@ public class DoorScript : MonoBehaviour
             DoorFlip();
             nextDoor.GetComponent<DoorScript>().DoorFlip();
         }
+        // else if (col.gameObject.tag == "Ghost")
+        // {
+        //     col.gameObject.GetComponent<GhostMovement>().CrossRoom(nextDoor.GetComponent<DoorScript>().spawnPoint.transform.position);
+        // }
     }
 
     public void DoorFlip() {
@@ -83,20 +85,26 @@ public class DoorScript : MonoBehaviour
     }
 
     private void SetNextDoor() {
-         if (nextRoomPos.x != 0) {
-            if (nextRoomPos.x > 0) {
+         if (nextRoomPos.x != 0) 
+         {
+            if (nextRoomPos.x > 0) 
+            {
                 nextDoor = nextRoom.GetComponent<RoomScript>().rightDoor;
             }
-            else {
+            else
+            {
                 nextDoor = nextRoom.GetComponent<RoomScript>().leftDoor;
             }
         }
         if (nextRoomPos.y != 0) {
             if (nextRoomPos.y < 0) 
                 nextDoor = nextRoom.GetComponent<RoomScript>().downDoor;
-            else 
+            else
                 nextDoor = nextRoom.GetComponent<RoomScript>().upDoor;
         }
+
+
+        
     }
 
 }

@@ -15,6 +15,7 @@ public class GameManagers : MonoBehaviour
         mapGenerator.Generate();
         map = mapGenerator.map;
         ghostMovement.SetMap(map);
+        ghostMovement.SetDestination(ghostMovement.destination);
     }
 
     // Update is called once per frame
