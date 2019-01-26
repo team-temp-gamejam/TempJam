@@ -13,6 +13,16 @@ public class Room
     public bool rightActive = false;
     public bool upActive = false;
     public bool downActive = false;
+    private int roomType = -1;
+
+    public int GetRoomType()
+    {
+        if(roomType == -1)
+        {
+            this.roomType = this.ToRoomType();
+        }
+        return this.roomType;
+    }
 
     public int ToRoomType()
     {
@@ -256,6 +266,14 @@ public class Generator : MonoBehaviour
             }
         }
 
+        for(int i = 0; i < dimension; i++)
+        {
+            for(int j=0;j<dimension; j++)
+            {
+                map[i][j].GetRoomType();
+            }
+        }
+
         /*for (int i = 0; i < dimension; i++)
         {
             for (int j = 0; j < dimension; j++)
@@ -371,7 +389,7 @@ public class Generator : MonoBehaviour
             result.Add(new List<int>());
             for (int j = 0; j < dimension; j++)
             {
-                result[i].Add(map[i][j].ToRoomType());
+                result[i].Add(map[i][j].GetRoomType());
             }
         }
         return result;
