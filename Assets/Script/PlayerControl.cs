@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
     private int player;
+    [SerializeField]
     private float speed = 2;
 
     private Vector2 direction;

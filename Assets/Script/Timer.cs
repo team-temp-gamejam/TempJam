@@ -7,34 +7,37 @@ using System.Threading;
 public class Timer : MonoBehaviour
 {
     [SerializeField]
-    public int timeLeft; 
+    public float timeLeft; 
     public Text timerText;
+    public bool timePaused;
 
     void Start()
     {
-        StartCoroutine("TickTime");
+        timePaused = false;
         //Time.timeScale = 1; 
     }
 
     void Update()
     {
-        timerText.text = ("" + timeLeft);
-        
-        //lose the game
-        if(timeLeft == 0)
-        {
+        timerText.text = ("" + (int)timeLeft);
+        TickTime();
+        //Debug.Log(timePaused);
 
+        if (timeLeft == 0)
+        {
+            //lose the game
         }
 
     }
 
 
-    IEnumerator TickTime()
+    void TickTime()
     {
-        while (timeLeft>0)
+        if (timeLeft>0 && !timePaused)
         {
-            yield return new WaitForSeconds(1);
-            timeLeft--;
+           // yield return new WaitForSeconds(1);
+            timeLeft -= Time.deltaTime;
+            
         }
 
     }
