@@ -48,6 +48,12 @@ TagManager:
   - name: player
     uniqueID: 2563177257
     locked: 0
+  - name: UI under fog
+    uniqueID: 1089133857
+    locked: 0
   - name: fog
     uniqueID: 3064706909
+    locked: 0
+  - name: UI over fog
+    uniqueID: 3301445257
     locked: 0

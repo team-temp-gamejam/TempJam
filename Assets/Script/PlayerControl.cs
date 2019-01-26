@@ -14,10 +14,12 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private Vector2 currentRoom;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     //need to set currentRoom once at spawning player
@@ -32,50 +34,16 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         GetMoveInput();
         Move();
-        if (player == 1)
+        if (Input.GetButtonDown("p"+player+"Rotate"))
         {
-            if (Input.GetButtonDown("p1Rotate"))
-            {
-                Rotate();
-            }
-            if (Input.GetButtonDown("p1Action"))
-            {
-                Action();
-            }
+            Rotate();
         }
-        if (player == 2)
+        if (Input.GetButtonDown("p"+player+"Action"))
         {
-            if (Input.GetButtonDown("p2Rotate"))
-            {
-                Rotate();
-            }
-            if (Input.GetButtonDown("p2Action"))
-            {
-                Action();
-            }
-        }
-        if (player == 3)
-        {
-            if (Input.GetButtonDown("p3Rotate"))
-            {
-                Rotate();
-            }
-            if (Input.GetButtonDown("p3Action"))
-            {
-                Action();
-            }
-        }
-        if (player == 4) { 
-            if (Input.GetButtonDown("p4Rotate"))
-            {
-                 Rotate();
-            }
-            if (Input.GetButtonDown("p4Action"))
-            {
-                Action();
-            }
+            Action();
         }
     }
 
@@ -92,108 +60,49 @@ public class PlayerControl : MonoBehaviour
     //input for moving
     private void GetMoveInput()
     {
+        
+        anim.SetBool("isWalk" , false);
         direction = Vector2.zero;
-        //for player 1
-        // if (player == 1)
-        // {
-        //     if (Input.GetButton("p1Up"))
-        //     {
-        //         direction += Vector2.up;
-        //     }
-        //     if (Input.GetButton("p1Right"))
-        //     {
-        //         direction += Vector2.right;
-        //     }
-        //     if (Input.GetButton("p1Left"))
-        //     {
-        //         direction += Vector2.left;
-        //     }
-        //     if (Input.GetButton("p1Down"))
-        //     {
-        //         direction += Vector2.down;
-        //     }
-        // }
-
-        // //player 2
-        // if (player == 2)
-        // {
-        //     if (Input.GetButton("p2Up"))
-        //     {
-        //         direction += Vector2.up;
-        //     }
-        //     if (Input.GetButton("p2Right"))
-        //     {
-        //         direction += Vector2.right;
-        //     }
-        //     if (Input.GetButton("p2Left"))
-        //     {
-        //         direction += Vector2.left;
-        //     }
-        //     if (Input.GetButton("p2Down"))
-        //     {
-        //         direction += Vector2.down;
-        //     }
-          
-        // }
-
-        // //player 3
-        // if (player == 3)
-        // {
-        //     if (Input.GetButton("p3Up"))
-        //     {
-        //         direction += Vector2.up;
-        //     }
-        //     if (Input.GetButton("p3Right"))
-        //     {
-        //         direction += Vector2.right;
-        //     }
-        //     if (Input.GetButton("p3Left"))
-        //     {
-        //         direction += Vector2.left;
-        //     }
-        //     if (Input.GetButton("p3Down"))
-        //     {
-        //         direction += Vector2.down;
-        //     }
-        // }
-
-        // //player 4
-        // if (player == 4)
-        // {
-        //     if (Input.GetButton("p4Up"))
-        //     {
-        //         direction += Vector2.up;
-        //     }
-        //     if (Input.GetButton("p4Right"))
-        //     {
-        //         direction += Vector2.right;
-        //     }
-        //     if (Input.GetButton("p4Left"))
-        //     {
-        //         direction += Vector2.left;
-        //     }
-        //     if (Input.GetButton("p4Down"))
-        //     {
-        //         direction += Vector2.down;
-        //     }
-           
-        // }
 
          if (Input.GetButton("p"+player+"Up"))
         {
             direction += Vector2.up;
+            anim.SetBool("isWalk" , true);
+            anim.SetBool("FaceUp" , true);
+            
+            anim.SetBool("FaceDown" , false);
+            anim.SetBool("FaceLeft" , false);
+            anim.SetBool("FaceRight" , false);
         }
         if (Input.GetButton("p"+player+"Right"))
         {
             direction += Vector2.right;
+            anim.SetBool("isWalk" , true);
+            anim.SetBool("FaceRight" , true);
+            
+            anim.SetBool("FaceUp" , false);
+            anim.SetBool("FaceDown" , false);
+            anim.SetBool("FaceLeft" , false);
         }
         if (Input.GetButton("p"+player+"Left"))
         {
             direction += Vector2.left;
+            anim.SetBool("isWalk" , true);
+            anim.SetBool("FaceLeft" , true);
+            
+            anim.SetBool("FaceUp" , false);
+            anim.SetBool("FaceDown" , false);
+            anim.SetBool("FaceRight" , false);
         }
         if (Input.GetButton("p"+player+"Down"))
         {
             direction += Vector2.down;
+            anim.SetBool("isWalk" , true);
+            anim.SetBool("FaceDown" , true);
+            
+            anim.SetBool("FaceUp" , false);
+            anim.SetBool("FaceLeft" , false);
+            anim.SetBool("FaceRight" , false);
         }
     }
     
@@ -207,10 +116,6 @@ public class PlayerControl : MonoBehaviour
     public void Action()
     {
 
-    }
-
-    public void SetInteractItem(GameObject item) {
-        
     }
 
 
