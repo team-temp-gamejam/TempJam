@@ -19,7 +19,7 @@ public class GhostMovement : MonoBehaviour
     {
         position = new Vector2Int();
         rg = GetComponent<Rigidbody2D>();
-        SetDestination(destination);
+        //SetDestination(destination);
     }
 
     // Update is called once per frame
