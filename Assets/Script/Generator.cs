@@ -131,6 +131,7 @@ public class Generator : MonoBehaviour
     /*public GameObject cube;
     public GameObject cylinder;*/
     //public List<List<GameObject>> cubes = new List<List<GameObject>>();
+    public GameObject interior;
     public List<List<Room>> map = new List<List<Room>>();
     private HashSet<Room> linked = new HashSet<Room>();
     private List<Room> linkable = new List<Room>();
@@ -140,10 +141,10 @@ public class Generator : MonoBehaviour
 
     public void Generate()
     {
-        for(int i = 0; i < dimension; i++)
+        for (int i = 0; i < dimension; i++)
         {
             map.Add(new List<Room>());
-            for(int j = 0; j < dimension; j++)
+            for (int j = 0; j < dimension; j++)
             {
                 map[i].Add(new Room());
                 if (j > 0)
@@ -161,7 +162,7 @@ public class Generator : MonoBehaviour
 
         Room first = map[Random.Range(0, dimension)][Random.Range(0, dimension)];
         linked.Add(first);
-        if(first.left != null)
+        if (first.left != null)
         {
             linkable.Add(first.left);
             first.leftActive = true;
@@ -186,7 +187,7 @@ public class Generator : MonoBehaviour
             first.down.upActive = true;
         }
 
-        while(linked.Count < CountRoom(dimension))
+        while (linked.Count < CountRoom(dimension))
         {
             Room selected = linkable[Random.Range(0, linkable.Count)];
             linkable.Remove(selected);
@@ -218,7 +219,7 @@ public class Generator : MonoBehaviour
         }
 
         List<bool> addition = new List<bool>();
-        for(int i = 0; i < (CountLink(dimension) - CountRoom(dimension) + 1) * linkRate; i++)
+        for (int i = 0; i < (CountLink(dimension) - CountRoom(dimension) + 1) * linkRate; i++)
         {
             addition.Add(true);
         }
@@ -295,14 +296,14 @@ public class Generator : MonoBehaviour
         playerStart.Add(new List<int>());
         playerStart.Add(new List<int>());
         playerStart.Add(new List<int>());
-        for(int player = 0;player < 4; player++)
+        for (int player = 0; player < 4; player++)
         {
             Room selected = spawnable[Random.Range(0, spawnable.Count)];
             for (int i = 0; i < dimension; i++)
             {
                 for (int j = 0; j < dimension; j++)
                 {
-                    if(map[i][j] == selected)
+                    if (map[i][j] == selected)
                     {
                         playerStart[player].Add(i);
                         playerStart[player].Add(j);
@@ -325,6 +326,21 @@ public class Generator : MonoBehaviour
         {
             Instantiate(cube, new Vector3(playerStart[i][0] + 0.5f, playerStart[i][1] + 0.5f), Quaternion.identity);
         }*/
+
+        GenerateObject(ref map);
+    }
+
+    private void GenerateObject(ref List<List<Room>> map)
+    {
+        GameObject mapObject = new GameObject("Map");
+        for (int i = 0; i < dimension; i++)
+        {
+            for (int j = 0; j < dimension; j++)
+            {
+                GameObject roomObject = Instantiate(interior, new Vector3(i * 11, j * 11, 0), Quaternion.identity, mapObject.transform);
+                map[i][j].interior = roomObject;
+            }
+        }
     }
 
     private int CountLink(int dimension)
@@ -363,12 +379,12 @@ public class Generator : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
