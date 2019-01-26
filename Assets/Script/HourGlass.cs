@@ -40,7 +40,7 @@ public class HourGlass : InteractItem
         childrenTime.timePaused = true;
         ghost.speed = 0;
        // Debug.Log(childrenTime.timePaused);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(timePlus);
         
         childrenTime.timePaused = false;
        // Debug.Log(childrenTime.timePaused);

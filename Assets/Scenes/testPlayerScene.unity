@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
+  speed: 2
 --- !u!114 &476732625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  direction: 1
+  destination: {x: 0, y: 0}
+  direction: 
 --- !u!1 &631307625
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca044fe32097ab24691c88c520351d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 0
+  timeLeft: 60
   timerText: {fileID: 1067436755}
   timePaused: 0
 --- !u!114 &1067436758
