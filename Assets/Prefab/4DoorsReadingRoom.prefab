@@ -1271,8 +1271,9 @@ GameObject:
   - component: {fileID: 873853431149367419}
   - component: {fileID: 8660003429857019079}
   - component: {fileID: 1624271228403888497}
+  - component: {fileID: 689760944562015592}
   m_Layer: 0
-  m_Name: 4DoorsReadingRoom 1
+  m_Name: 4DoorsReadingRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1742,6 +1743,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0030077, y: 1.1428642}
   m_EdgeRadius: 0
+--- !u!114 &689760944562015592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151822801948814705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  upDoor: {fileID: 0}
+  downDoor: {fileID: 0}
 --- !u!1 &5772262082029406009
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,12 +14,12 @@ public class CameraFollowScript : MonoBehaviour
     private Vector2 cameraOffset;
     public  Vector2 AxisMultiply = new Vector2(1, 1);
     
-    private MapManager mapManager;
+    private Generator generator;
     
     // Start is called before the first frame update
     void Start()
     {  
-        mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+        generator = GameObject.Find("Generator").GetComponent<Generator>();
     }
 
     // Update is called once per frame
@@ -32,13 +32,13 @@ public class CameraFollowScript : MonoBehaviour
 
     public void SetRoom(int column, int row) {
         RoomIndex = new Vector2(column, row);
-        GameObject room = GameObject.Find("MapManager").GetComponent<MapManager>().GetRoom(RoomIndex);
+        GameObject room = GameObject.Find("Generator").GetComponent<Generator>().GetRoom(RoomIndex);
         RoomPosition = new Vector2(room.transform.position.x, room.transform.position.y);
     }
 
     void updateRoom() {
         RoomIndex = player.GetComponent<PlayerControl>().GetCurrentRoom();
-        GameObject room = mapManager.GetRoom(RoomIndex);
+        GameObject room = generator.GetRoom(RoomIndex);
         RoomPosition = new Vector2(room.transform.position.x, room.transform.position.y);
     }
 

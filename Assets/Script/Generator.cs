@@ -146,11 +146,12 @@ public class Generator : MonoBehaviour
     /*public GameObject cube;
     public GameObject cylinder;*/
     //public List<List<GameObject>> cubes = new List<List<GameObject>>();
-    public GameObject interior;
+    public GameObject[] roomPrefabs;
     public List<List<Room>> map = new List<List<Room>>();
     private HashSet<Room> linked = new HashSet<Room>();
     private List<Room> linkable = new List<Room>();
     public float linkRate;
+    public MapDrawer drawer;
 
     public List<List<int>> playerStart = new List<List<int>>();
 
@@ -345,6 +346,8 @@ public class Generator : MonoBehaviour
             }
         }
 
+        Draw();
+
         /*for(int i = 0; i < 4; i++)
         {
             Instantiate(cube, new Vector3(playerStart[i][0] + 0.5f, playerStart[i][1] + 0.5f), Quaternion.identity);
@@ -357,11 +360,26 @@ public class Generator : MonoBehaviour
     {
         GetRoomTypes();
         GameObject mapObject = new GameObject("Map");
+        List<float> startPosition = new List<float>();
+
+        startPosition.Add(180.0f);
+        startPosition.Add(180.0f);
+        startPosition.Add(90.0f);
+        startPosition.Add(180.0f);
+        startPosition.Add(180.0f);
+
         for (int i = 0; i < dimension; i++)
         {
             for (int j = 0; j < dimension; j++)
             {
-                GameObject roomObject = Instantiate(interior, new Vector3(i * 11, j * 11, 0), Quaternion.Euler(0, 0, (-90) * (map[i][j].type % 4)), mapObject.transform);
+                GameObject prefabedRoom;
+                
+                int roomTheme = Random.Range(0, 2);
+                prefabedRoom = roomPrefabs[(int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme];
+                // - startPosition[map[i][j].type % 4] + 
+                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 10), Quaternion.Euler(0, 0, startPosition[(int)Mathf.Floor(map[i][j].type/4)] + (-90) * (map[i][j].type % 4)), mapObject.transform);
+                roomObject.GetComponent<RoomScript>().setTilePosition(j, i);
+                roomObject.GetComponent<RoomScript>().RoomType = map[i][j].type;
                 map[i][j].interior = roomObject;
             }
         }
@@ -411,9 +429,26 @@ public class Generator : MonoBehaviour
         return result;
     }
 
+    public GameObject GetRoom(int row, int column) {
+        // return room[row][column];
+        return map[column][row].interior;
+    }
+
+    public GameObject GetRoom(Vector2 index) {
+        return map[(int)index.x][(int)index.y].interior;
+    }
+
+    public void Draw()
+    {
+        if(drawer != null)
+        {
+            drawer.DrawMap(map);
+        }
+    }
+
     void Start()
     {
-
+        Generate();
     }
 
     // Update is called once per frame

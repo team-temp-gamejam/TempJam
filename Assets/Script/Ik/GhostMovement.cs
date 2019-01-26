@@ -10,6 +10,8 @@ public class GhostMovement : MonoBehaviour
     private Transform nav;
 
     public Vector2Int destination;
+    private List<List<float>> score;
+    private float currentScore;
     private List<List<Room>> map;
     private Vector2Int position;
     private GameObject room;
@@ -39,12 +41,27 @@ public class GhostMovement : MonoBehaviour
             //Debug.Log(RoomToNav(doorPositions[direction[0]]));
             transform.position = NavToRoom(agent.transform.position);
         }
+        else
+        {
+            SetDestination(findBestDestination());
+        }
     }
 
     public void SetMap(List<List<Room>> map)
     {
         this.map = map;
         room = map[position.x][position.y].interior;
+
+        score = new List<List<float>>();
+        for (int i = 0; i < map.Count; i++)
+        {
+            score.Add(new List<float>());
+            for (int j = 0; j < map[0].Count; j++)
+            {
+                score[i].Add(1);
+            }
+        }
+
         GetDoors();
         SetNavAgent();
     }
@@ -102,6 +119,7 @@ public class GhostMovement : MonoBehaviour
 
         position += displacement;
         room = map[position.x][position.y].interior;
+        updateScore();
         GetDoors();
         SetNavAgent();
     }
@@ -156,6 +174,47 @@ public class GhostMovement : MonoBehaviour
             }
             doorPositions[3] = doorPos;
         }
+    }
+
+    private void updateScore()
+    {
+        for (int i = 0; i < score.Count; i++)
+        {
+            for (int j = 0; j < score[0].Count; j++)
+            {
+                if (position.x == i && position.y == j)
+                {
+                    score[i][j] = 0;
+                }
+                else
+                {
+                    score[i][j] = (score[i][j] + 2) / 3;
+                }
+            }
+        }
+    }
+
+    private Vector2Int findBestDestination()
+    {
+        List<Vector2Int> pool = new List<Vector2Int>();
+        float highScore = 0;
+        for (int i = 0; i < score.Count; i++)
+        {
+            for (int j = 0; j < score[0].Count; j++)
+            {
+                if (highScore > score[i][j])
+                {
+                    continue;
+                }
+                if (highScore < score[i][j])
+                {
+                    pool.Clear();
+                    highScore = score[i][j];
+                }
+                pool.Add(new Vector2Int(i, j));
+            }
+        }
+        return pool[Random.Range(0, pool.Count)];
     }
 
     public void SetDestination(Vector2Int destination)

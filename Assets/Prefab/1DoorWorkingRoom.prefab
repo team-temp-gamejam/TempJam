@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 3989238549426498900}
   - component: {fileID: 2109305541189802906}
   - component: {fileID: 149780845990206265}
+  - component: {fileID: 6400588212514638552}
   m_Layer: 0
   m_Name: 1DoorWorkingRoom
   m_TagString: Untagged
@@ -561,6 +562,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.867151, y: 1.691566}
   m_EdgeRadius: 0
+--- !u!114 &6400588212514638552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718468052704954056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  upDoor: {fileID: 0}
+  downDoor: {fileID: 0}
 --- !u!1 &2197406105277982615
 GameObject:
   m_ObjectHideFlags: 0
