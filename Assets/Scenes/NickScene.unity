@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147464816}
   - component: {fileID: 147464817}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: doorLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147464815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.18, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 396272012}
@@ -156,7 +156,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0862623, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 165922359}
   - component: {fileID: 165922358}
   - component: {fileID: 165922357}
+  - component: {fileID: 165922360}
   m_Layer: 0
   m_Name: p1Cam
   m_TagString: MainCamera
@@ -221,7 +222,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.6
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -251,6 +252,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &165922360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165922356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c52c2c1af16a6d4ab71bedd9b05bced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camSpeed: 0.1
+  player: {fileID: 773708720}
+  AxisMultiply: {x: 0.3, y: 0.5}
 --- !u!1 &396272008
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +279,7 @@ GameObject:
   - component: {fileID: 396272011}
   - component: {fileID: 396272010}
   - component: {fileID: 396272009}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,18 +313,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4180655, y: 0}
+  m_Offset: {x: -0.01, y: 0.38}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8032633, y: 1}
+  m_Size: {x: 1.21, y: 0.8}
   m_EdgeRadius: 0
 --- !u!212 &396272011
 SpriteRenderer:
@@ -344,10 +360,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55167e45c5d655943835fee9937c3706, type: 3}
+  m_SortingLayerID: 1567896081
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: e028a0c62431b1b4eafaf3b969a9b866, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -365,14 +381,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396272008}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.79, y: 0, z: -1}
-  m_LocalScale: {x: 0.6083264, y: 0.9453, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 2.978, y: 0, z: -1}
+  m_LocalScale: {x: 0.49205, y: 0.453244, z: 1}
   m_Children:
   - {fileID: 147464816}
   m_Father: {fileID: 2061478677}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &489096149
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 489096151}
   - component: {fileID: 489096150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: doorLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +459,7 @@ GameObject:
   - component: {fileID: 497840424}
   - component: {fileID: 497840423}
   - component: {fileID: 497840422}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &602567123
 AudioListener:
   m_ObjectHideFlags: 0
@@ -949,10 +965,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1731790039
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 2e42486142fbcf347b658c3b3d56e4f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -971,8 +987,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773708720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.998, y: 2.028, z: -1}
-  m_LocalScale: {x: 5.26918, y: 5.64927, z: 1}
+  m_LocalPosition: {x: -3.6, y: 3.97, z: 7}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -990,6 +1006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
+  speed: 3
+  currentRoom: {x: 0, y: 0}
 --- !u!61 &773708724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1003,18 +1021,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.05}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.22169112}
+    oldSize: {x: 5, y: 10}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13, y: 0.13}
+  m_Size: {x: 5, y: 2.57}
   m_EdgeRadius: 0
 --- !u!50 &773708725
 Rigidbody2D:
@@ -1054,7 +1072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &949326793
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1129,7 +1147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080583640}
   - component: {fileID: 1080583639}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: doorLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,7 +1206,7 @@ GameObject:
   - component: {fileID: 1437786719}
   - component: {fileID: 1437786718}
   - component: {fileID: 1437786717}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1624,7 +1642,7 @@ GameObject:
   - component: {fileID: 1767829436}
   - component: {fileID: 1767829435}
   - component: {fileID: 1767829434}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1777,7 +1795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1977062602
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1852,7 +1870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008847894}
   - component: {fileID: 2008847893}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: doorLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1913,8 +1931,8 @@ GameObject:
   - component: {fileID: 2061478680}
   - component: {fileID: 2061478679}
   - component: {fileID: 2061478678}
-  - component: {fileID: 2061478682}
   - component: {fileID: 2061478683}
+  - component: {fileID: 2061478682}
   m_Layer: 0
   m_Name: tile01
   m_TagString: Untagged

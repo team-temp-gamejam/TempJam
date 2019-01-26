@@ -17,4 +17,8 @@ public class MapManager : MonoBehaviour
         // return room[row][column];
         return room[row*width + column];
     }
+
+    public GameObject GetRoom(Vector2 index) {
+        return room[(int)index.x + (int)index.y*width];
+    }
 }
