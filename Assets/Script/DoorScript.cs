@@ -37,10 +37,10 @@ public class DoorScript : MonoBehaviour
                 nextRoomPos.y = -1;
                 currentRoom.downDoor = this.gameObject;
             }
-        //get room location on map array from MapManager
-        GameObject mapManager = GameObject.Find("MapManager");      //position in map array is stored in MapManager
+        //get room location on map array from Generator
+        GameObject generator = GameObject.Find("Generator");      //position in map array is stored in Generator
         Vector2 tilePos = transform.parent.gameObject.GetComponent<RoomScript>().getTilePosition();
-        nextRoom = mapManager.GetComponent<MapManager>().GetRoom((int)(tilePos.y + nextRoomPos.y), (int)(tilePos.x + nextRoomPos.x));
+        nextRoom = generator.GetComponent<Generator>().GetRoom((int)(tilePos.y + nextRoomPos.y), (int)(tilePos.x + nextRoomPos.x));
         nextRoomPos *= -1;          //this is flipped to get more understanding of the door that player will be warped to
        
         DoorBound.SetActive(isLock);

@@ -146,7 +146,7 @@ public class Generator : MonoBehaviour
     /*public GameObject cube;
     public GameObject cylinder;*/
     //public List<List<GameObject>> cubes = new List<List<GameObject>>();
-    public GameObject interior;
+    public GameObject[] roomPrefabs;
     public List<List<Room>> map = new List<List<Room>>();
     private HashSet<Room> linked = new HashSet<Room>();
     private List<Room> linkable = new List<Room>();
@@ -357,11 +357,25 @@ public class Generator : MonoBehaviour
     {
         GetRoomTypes();
         GameObject mapObject = new GameObject("Map");
+        List<float> startPosition = new List<float>();
+
+        startPosition.Add(180.0f);
+        startPosition.Add(180.0f);
+        startPosition.Add(90.0f);
+        startPosition.Add(180.0f);
+        startPosition.Add(0.0f);
+
         for (int i = 0; i < dimension; i++)
         {
             for (int j = 0; j < dimension; j++)
             {
-                GameObject roomObject = Instantiate(interior, new Vector3(i * 11, j * 11, 0), Quaternion.Euler(0, 0, (-90) * (map[i][j].type % 4)), mapObject.transform);
+                GameObject prefabedRoom;
+                
+                int roomTheme = Random.Range(0, 2);
+                Debug.Log((int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme);
+                prefabedRoom = roomPrefabs[(int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme];
+
+                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 0), Quaternion.Euler(0, 0, (-90) * (map[i][j].type % 4)), mapObject.transform);
                 map[i][j].interior = roomObject;
             }
         }
@@ -411,9 +425,18 @@ public class Generator : MonoBehaviour
         return result;
     }
 
+    public GameObject GetRoom(int row, int column) {
+        // return room[row][column];
+        return map[column][row].interior;
+    }
+
+    public GameObject GetRoom(Vector2 index) {
+        return map[(int)index.x][(int)index.y].interior;
+    }
+
     void Start()
     {
-
+        Generate();
     }
 
     // Update is called once per frame
