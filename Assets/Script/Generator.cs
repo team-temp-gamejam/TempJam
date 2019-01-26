@@ -151,6 +151,7 @@ public class Generator : MonoBehaviour
     private HashSet<Room> linked = new HashSet<Room>();
     private List<Room> linkable = new List<Room>();
     public float linkRate;
+    public MapDrawer drawer;
 
     public List<List<int>> playerStart = new List<List<int>>();
 
@@ -345,6 +346,8 @@ public class Generator : MonoBehaviour
             }
         }
 
+        Draw();
+
         /*for(int i = 0; i < 4; i++)
         {
             Instantiate(cube, new Vector3(playerStart[i][0] + 0.5f, playerStart[i][1] + 0.5f), Quaternion.identity);
@@ -433,6 +436,14 @@ public class Generator : MonoBehaviour
 
     public GameObject GetRoom(Vector2 index) {
         return map[(int)index.x][(int)index.y].interior;
+    }
+
+    public void Draw()
+    {
+        if(drawer != null)
+        {
+            drawer.DrawMap(map);
+        }
     }
 
     void Start()
