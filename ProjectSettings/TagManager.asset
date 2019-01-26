@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 2563177257
+    locked: 0
+  - name: fog
+    uniqueID: 3064706909
     locked: 0

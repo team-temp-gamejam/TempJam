@@ -27,7 +27,6 @@ public class CameraFollowScript : MonoBehaviour
     {
         updateRoom();
         cameraOffset = new Vector2(player.transform.position.x - RoomPosition.x, player.transform.position.y - RoomPosition.y);
-        Debug.Log("room inx" + RoomIndex + " rompos = " + RoomPosition + " cam offset = " + cameraOffset );
         transform.position = Vector2.Lerp(transform.position, RoomPosition + (cameraOffset * AxisMultiply), camSpeed);
     }
 
