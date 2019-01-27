@@ -98,7 +98,7 @@ public class GhostMovement : MonoBehaviour
         {
             Vector2 targetPositionFloat = target.GetComponent<PlayerControl>().GetCurrentRoom();
             Vector2Int targetPosition = new Vector2Int((int)targetPositionFloat.x, (int)targetPositionFloat.y);
-            if (targetPosition != position)
+            if (targetPosition != position || target.GetComponent<PlayerControl>().inCupboard)
             {
                 continue;
             }

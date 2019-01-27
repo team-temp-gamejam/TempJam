@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
-    private bool inCupboard;
+    public bool inCupboard;
 
     public GameObject soundVisual;
     public GameObject lockSprite;
@@ -59,7 +59,7 @@ public class PlayerControl : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0, 0, orientation);
         GetMoveInput();
         Move();
-        if(inCupboard&& Input.GetButtonDown("p" + player + "Action"))
+        if (inCupboard && Input.GetButtonDown("p" + player + "Action"))
         {
             inCupboard = false;
             GetComponent<SpriteRenderer>().enabled = true;
@@ -165,6 +165,7 @@ public class PlayerControl : MonoBehaviour
         while (!footStep.isPlaying)
         {
             footStep.Play();
+            EventRelay.Notify(transform.position, 1);
         }
         yield return 0;
     }
@@ -193,7 +194,7 @@ public class PlayerControl : MonoBehaviour
 
             }
 
-            
+
 
         }
     }
@@ -207,8 +208,8 @@ public class PlayerControl : MonoBehaviour
     {
         Debug.Log("Hiding");
         inCupboard = true;
-        
-        
+
+
     }
 
     public void Captured()

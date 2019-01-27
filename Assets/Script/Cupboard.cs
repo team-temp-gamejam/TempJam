@@ -54,6 +54,7 @@ public class Cupboard : MonoBehaviour
         if (isOpen)
         {
             openSound.Play();
+            EventRelay.Notify(transform.position, 3);
             if (!Vacant())
             {
                 //Debug.Log("Something");
