@@ -7,7 +7,7 @@ using System.Threading;
 public class Timer : MonoBehaviour
 {
     [SerializeField]
-    public float timeLeft; 
+    public float timeLeft;
     public Text timerText;
     public bool timePaused;
     [SerializeField]
@@ -30,21 +30,21 @@ public class Timer : MonoBehaviour
             //lose the game
             gameUI.losingScreen();
         }
-        //if(timeLeft>0 && win condition)
-        //{
-        //gameUI.winning.SetActive(true);
-
-        //}
+        if (timeLeft > 0 && GameObject.Find("MapManager").GetComponent<MapManager>().CheckWinCondition())
+        {
+            timerText.enabled = false;
+            gameUI.winning.SetActive(true);
+        }
     }
 
 
     void TickTime()
     {
-        if (timeLeft>0 && !timePaused)
+        if (timeLeft > 0 && !timePaused)
         {
-           // yield return new WaitForSeconds(1);
+            // yield return new WaitForSeconds(1);
             timeLeft -= Time.deltaTime;
-            
+
         }
 
     }

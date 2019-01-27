@@ -15,12 +15,17 @@ public class MapManager : MonoBehaviour
 
     }
 
-    public void ScanMap() {
+    public void ScanMap()
+    {
         Transform map = GameObject.Find("Map").transform;
-        if (map != null) {
-            foreach (Transform room in map) {
-                foreach (Transform item in room) {
-                    if (item.gameObject.tag == "Player") {
+        if (map != null)
+        {
+            foreach (Transform room in map)
+            {
+                foreach (Transform item in room)
+                {
+                    if (item.gameObject.tag == "Player")
+                    {
                         players.Add(item.gameObject);
                     }
                     if (item.gameObject.tag == "Cupboard")
@@ -38,5 +43,20 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool CheckWinCondition()
+    {
+        bool win = true;
+        Vector2 roomPosition = players[0].GetComponent<PlayerControl>().GetCurrentRoom();
+        foreach (GameObject player in players)
+        {
+            if (roomPosition != player.GetComponent<PlayerControl>().GetCurrentRoom())
+            {
+                win = false;
+                break;
+            }
+        }
+        return win;
     }
 }
