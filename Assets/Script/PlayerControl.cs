@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private Camera playerCam;
 
+    public bool haveLock;
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
@@ -173,9 +174,15 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("p"+player+"Action")) {
             if (col.gameObject.tag == "Interactable")
             {
-                
+                if (col.parent.gameObject.tag == "Door") {
+                    if (!haveLock) return;
+                    
+                }
                 col.gameObject.GetComponent<InteractItem>().Interact();
             }
+
+            
+
         }
     }
 

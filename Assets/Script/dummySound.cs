@@ -22,7 +22,8 @@ public class dummySound : MonoBehaviour
         if (counter > delay) {
             Debug.Log("broadcast sound");
             counter = 0;
-            mapManager.GetComponent<EventRelay>().Notify(transform.position, 1);
+            // mapManager.GetComponent<EventRelay>().Notify(transform.position, 1);
+            EventRelay.Notify(transform.position, 1);
         }
     }
 
