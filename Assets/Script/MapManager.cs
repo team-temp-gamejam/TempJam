@@ -11,28 +11,36 @@ public class MapManager : MonoBehaviour
     public GameObject ghost;
 
     void Start()
-    {      
+    {
 
     }
 
-    public void ScanMap() {
+    public void ScanMap()
+    {
         Debug.Log("Scaning");
         Transform map = GameObject.Find("Map").transform;
-        if (map != null) {
+        if (map != null)
+        {
             Debug.Log("map found");
-            foreach (Transform room in map) {
-                foreach (Transform item in room) {
+            foreach (Transform room in map)
+            {
+                foreach (Transform item in room)
+                {
                     Debug.Log(item);
-                    if (item.gameObject.tag == "Player") {
+                    if (item.gameObject.tag == "Player")
+                    {
                         players.Add(item.gameObject);
                     }
-                    if (item.gameObject.tag == "Cupboard") {
+                    if (item.gameObject.tag == "Cupboard")
+                    {
                         cupboards.Add(item.gameObject);
                     }
-                    if (item.gameObject.tag == "Door") {
+                    if (item.gameObject.tag == "Door")
+                    {
                         doors.Add(item.gameObject);
                     }
-                    if (item.gameObject.tag == "Ghost") {
+                    if (item.gameObject.tag == "Ghost")
+                    {
                         ghost = item.gameObject;
                     }
                 }
