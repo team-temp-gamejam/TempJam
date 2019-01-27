@@ -30,6 +30,7 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject soundVisual;
     public GameObject lockSprite;
+    public GameObject compassSprite;
 
     public int orientation = 0;
     // Start is called before the first frame update
@@ -188,6 +189,8 @@ public class PlayerControl : MonoBehaviour
                 }
                 col.gameObject.GetComponent<InteractItem>().Interact();
                 lockSprite.SetActive(haveLock);
+                compassSprite.SetActive(compassCollected);
+
             }
 
             

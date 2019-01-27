@@ -25,7 +25,7 @@ public class CameraFollowScript : MonoBehaviour
         mask = this.gameObject.GetComponent<Camera>().cullingMask;
         this.gameObject.GetComponent<Camera>().cullingMask = 0;
         generator = GameObject.Find("Generator").GetComponent<Generator>();
-        compass.SetActive(false);
+        // compass.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,10 +38,10 @@ public class CameraFollowScript : MonoBehaviour
         {
             this.gameObject.GetComponent<Camera>().cullingMask = mask;
         }
-        if (player.GetComponent<PlayerControl>().compassCollected)
-        {
-            compass.SetActive(true);
-        }
+        // if (player.GetComponent<PlayerControl>().compassCollected)
+        // {
+        //     compass.SetActive(true);
+        // }
         this.gameObject.transform.rotation = Quaternion.Euler(0, 0, player.GetComponent<PlayerControl>().orientation);
     }
 
