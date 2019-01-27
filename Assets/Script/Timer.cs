@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
         TickTime();
         //Debug.Log(timePaused);
 
-        if ((int)timeLeft == 0)
+        if ((int)timeLeft <= 0)
         {
             //lose the game
             gameUI.losingScreen();

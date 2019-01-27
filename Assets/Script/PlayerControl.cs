@@ -44,6 +44,7 @@ public class PlayerControl : MonoBehaviour
         stepping = false;
         compassCollected = false;
         canLeaveCupboard = true;
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
     }
 
     //need to set currentRoom once at spawning player
@@ -219,7 +220,7 @@ public class PlayerControl : MonoBehaviour
     public void Captured()
     {
         Debug.Log("captured!!");
-        timer.timeLeft -= timer.timeLeft;
+        timer.timeLeft -= 100;
         /*
         bool capture = true;
         while (capture)

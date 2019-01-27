@@ -39,7 +39,7 @@ public class Cupboard : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnColliderEnter2D(Collision2D collision)
     {
 
         collision.gameObject.GetComponent<PlayerControl>().transform.position = transform.position;
