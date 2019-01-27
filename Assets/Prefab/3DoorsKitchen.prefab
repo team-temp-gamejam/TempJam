@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 9202473648451725561}
   - component: {fileID: 7374494777546502858}
   - component: {fileID: 3703230097532542509}
+  - component: {fileID: 3994475002697371503}
   m_Layer: 0
   m_Name: 3DoorsKitchen
   m_TagString: Untagged
@@ -532,6 +533,20 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   upDoor: {fileID: 0}
   downDoor: {fileID: 0}
+--- !u!114 &3994475002697371503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123756442482439879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a661315ce6c05a041acc00e6bc3083ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigator: {fileID: 2064146572813661935, guid: 76de348a896022746bac6a6566d334f0,
+    type: 3}
 --- !u!1001 &601915169979217110
 PrefabInstance:
   m_ObjectHideFlags: 0

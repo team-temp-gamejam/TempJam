@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject soundVisual;
 
+    public int orientation = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +50,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.gameObject.transform.rotation = Quaternion.Euler(0, 0, orientation);
         GetMoveInput();
         Move();
         if (stepping)
@@ -139,7 +140,7 @@ public class PlayerControl : MonoBehaviour
     //rotate camera
     public void Rotate()
     {
-
+        //orientation = (orientation + 90) % 360;
     }
 
     IEnumerator footStepSound()
@@ -159,6 +160,11 @@ public class PlayerControl : MonoBehaviour
                 col.gameObject.GetComponent<InteractItem>().Interact();
             }
         }
+    }
+
+    public void SetPlayer(int player)
+    {
+        this.player = player;
     }
 
     public void hiding()

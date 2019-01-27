@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
     [SerializeField]
+    private AudioMixer masterMixer;
+
+  [SerializeField]
     private GameObject pausedGamePanel, optionPanel, exitToMainMenuPanel, exitGamePanel;
 
 
@@ -18,6 +22,8 @@ public class InGameUIManager : MonoBehaviour
 
     [SerializeField]
     private Text p1AlertText, p2AlertText, p3AlertText, p4AlertText;
+    [SerializeField]
+    private Slider SFXSlider, BGMSlider;
 
     [SerializeField]
     private PlayerControl p1, p2, p3, p4;
@@ -38,6 +44,8 @@ public class InGameUIManager : MonoBehaviour
         exitGameButton.onClick.AddListener(openExitGame);
         noExitGameButton.onClick.AddListener(closeExitGame);
         yesExitGameButton.onClick.AddListener(exitGame);
+        SFXSlider.onValueChanged.AddListener(SFXAdjust);
+        BGMSlider.onValueChanged.AddListener(BGMAdjust);
     }
 
     // Update is called once per frame
@@ -93,6 +101,15 @@ public class InGameUIManager : MonoBehaviour
     {
         optionPanel.SetActive(false);
         changeToAnotherMenu();
+    }
+
+    void SFXAdjust(float soundLevel) 
+    {
+        masterMixer.SetFloat("SFX", soundLevel);
+    }
+    void BGMAdjust(float soundLevel) 
+    {
+        masterMixer.SetFloat("BGM", soundLevel);
     }
 
     void openExitToMainMenu()

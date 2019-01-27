@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     public GameObject ghost;
 
     void Start()
-    {      
+    {
 
     }
 
@@ -23,13 +23,16 @@ public class MapManager : MonoBehaviour
                     if (item.gameObject.tag == "Player") {
                         players.Add(item.gameObject);
                     }
-                    if (item.gameObject.tag == "Cupboard") {
+                    if (item.gameObject.tag == "Cupboard")
+                    {
                         cupboards.Add(item.gameObject);
                     }
-                    if (item.gameObject.tag == "Door") {
+                    if (item.gameObject.tag == "Door")
+                    {
                         doors.Add(item.gameObject);
                     }
-                    if (item.gameObject.tag == "Ghost") {
+                    if (item.gameObject.tag == "Ghost")
+                    {
                         ghost = item.gameObject;
                     }
                 }
