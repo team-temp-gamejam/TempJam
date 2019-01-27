@@ -19,7 +19,8 @@ public class CameraFollowScript : MonoBehaviour
     
     // Start is called before the first frame update
     void Start()
-    {  
+    {
+        this.gameObject.GetComponent<Camera>().cullingMask = 0;
         generator = GameObject.Find("Generator").GetComponent<Generator>();
         compass.SetActive(false);
     }
@@ -30,10 +31,15 @@ public class CameraFollowScript : MonoBehaviour
         updateRoom();
         cameraOffset = new Vector2(player.transform.position.x - RoomPosition.x, player.transform.position.y - RoomPosition.y);
         transform.position = Vector2.Lerp(transform.position, RoomPosition + (cameraOffset * AxisMultiply), camSpeed);
+        if(((Vector2)transform.position - (RoomPosition + (cameraOffset * AxisMultiply))).magnitude < 0.001)
+        {
+            this.gameObject.GetComponent<Camera>().cullingMask = -1;
+        }
         if (player.GetComponent<PlayerControl>().compassCollected)
         {
             compass.SetActive(true);
         }
+        this.gameObject.transform.rotation = Quaternion.Euler(0, 0, player.GetComponent<PlayerControl>().orientation);
     }
 
     public void SetRoom(int column, int row) {
