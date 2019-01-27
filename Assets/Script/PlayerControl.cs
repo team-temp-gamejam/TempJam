@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     private bool inCupboard;
 
     public GameObject soundVisual;
+    public GameObject lockSprite;
 
     public int orientation = 0;
     // Start is called before the first frame update
@@ -178,11 +179,20 @@ public class PlayerControl : MonoBehaviour
         {
             if (col.gameObject.tag == "Interactable")
             {
-                if (col.parent.gameObject.tag == "Door") {
-                    if (!haveLock) return;
+                if (col.transform.parent.gameObject.tag == "Door") {
+                    bool Doorlock = col.transform.parent.gameObject.GetComponent<DoorScript>().isLock;
+                    
+                    if (Doorlock) {
+                        if (haveLock) return;
+                        else haveLock = true;
+                    } else {
+                        if (!haveLock) return;
+                        else haveLock = false;
+                    }
                     
                 }
                 col.gameObject.GetComponent<InteractItem>().Interact();
+                lockSprite.SetActive(haveLock);
             }
 
             
