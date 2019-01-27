@@ -25,6 +25,9 @@ public class PlayerControl : MonoBehaviour
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
+
+    public GameObject soundVisual;
+
     // Start is called before the first frame update
     void Start()
     {
