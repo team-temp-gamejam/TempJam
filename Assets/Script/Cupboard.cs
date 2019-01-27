@@ -41,10 +41,11 @@ public class Cupboard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        
+
+        collision.gameObject.GetComponent<PlayerControl>().transform.position = transform.position;
         collision.gameObject.GetComponent<PlayerControl>().hiding();
-        
+        this.isOpen = false;
+        transform.GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     public void SetOpen(bool isOpen)

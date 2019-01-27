@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
+    private bool inCupboard;
 
     public int orientation = 0;
     // Start is called before the first frame update
@@ -51,6 +52,11 @@ public class PlayerControl : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0, 0, orientation);
         GetMoveInput();
         Move();
+        if(inCupboard&& Input.GetButtonDown("p" + player + "Action"))
+        {
+            inCupboard = false;
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
         if (stepping)
         {
             StartCoroutine("footStepSound");
@@ -61,6 +67,15 @@ public class PlayerControl : MonoBehaviour
             Rotate();
         }
         stepping = false;
+        if (inCupboard)
+        {
+            for (int i = 1; i < 5; i++)
+            {
+                playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("p" + i + "Light"));
+            }
+            GetComponent<SpriteRenderer>().enabled = false;
+            playerCam.cullingMask |= 1 << LayerMask.NameToLayer("p" + player + "Hide");
+        }
         /*
         else
         {
@@ -88,50 +103,52 @@ public class PlayerControl : MonoBehaviour
         
         anim.SetBool("isWalk" , false);
         direction = Vector2.zero;
+        if (!inCupboard)
+        {
+            if (Input.GetButton("p" + player + "Up"))
+            {
+                direction += Vector2.up;
+                stepping = true;
+                anim.SetBool("isWalk", true);
+                anim.SetBool("FaceUp", true);
 
-         if (Input.GetButton("p"+player+"Up"))
-        {
-            direction += Vector2.up;
-            stepping = true;
-            anim.SetBool("isWalk" , true);
-            anim.SetBool("FaceUp" , true);
-            
-            anim.SetBool("FaceDown" , false);
-            anim.SetBool("FaceLeft" , false);
-            anim.SetBool("FaceRight" , false);
-        }
-        if (Input.GetButton("p"+player+"Right"))
-        {
-            direction += Vector2.right;
-            stepping = true;
-            anim.SetBool("isWalk" , true);
-            anim.SetBool("FaceRight" , true);
-            
-            anim.SetBool("FaceUp" , false);
-            anim.SetBool("FaceDown" , false);
-            anim.SetBool("FaceLeft" , false);
-        }
-        if (Input.GetButton("p"+player+"Left"))
-        {
-            direction += Vector2.left;
-            stepping = true;
-            anim.SetBool("isWalk" , true);
-            anim.SetBool("FaceLeft" , true);
-            
-            anim.SetBool("FaceUp" , false);
-            anim.SetBool("FaceDown" , false);
-            anim.SetBool("FaceRight" , false);
-        }
-        if (Input.GetButton("p"+player+"Down"))
-        {
-            direction += Vector2.down;
-            stepping = true;
-            anim.SetBool("isWalk" , true);
-            anim.SetBool("FaceDown" , true);
-            
-            anim.SetBool("FaceUp" , false);
-            anim.SetBool("FaceLeft" , false);
-            anim.SetBool("FaceRight" , false);
+                anim.SetBool("FaceDown", false);
+                anim.SetBool("FaceLeft", false);
+                anim.SetBool("FaceRight", false);
+            }
+            if (Input.GetButton("p" + player + "Right"))
+            {
+                direction += Vector2.right;
+                stepping = true;
+                anim.SetBool("isWalk", true);
+                anim.SetBool("FaceRight", true);
+
+                anim.SetBool("FaceUp", false);
+                anim.SetBool("FaceDown", false);
+                anim.SetBool("FaceLeft", false);
+            }
+            if (Input.GetButton("p" + player + "Left"))
+            {
+                direction += Vector2.left;
+                stepping = true;
+                anim.SetBool("isWalk", true);
+                anim.SetBool("FaceLeft", true);
+
+                anim.SetBool("FaceUp", false);
+                anim.SetBool("FaceDown", false);
+                anim.SetBool("FaceRight", false);
+            }
+            if (Input.GetButton("p" + player + "Down"))
+            {
+                direction += Vector2.down;
+                stepping = true;
+                anim.SetBool("isWalk", true);
+                anim.SetBool("FaceDown", true);
+
+                anim.SetBool("FaceUp", false);
+                anim.SetBool("FaceLeft", false);
+                anim.SetBool("FaceRight", false);
+            }
         }
     }
     
@@ -168,13 +185,9 @@ public class PlayerControl : MonoBehaviour
     public void hiding()
     {
         Debug.Log("Hiding");
-        /*
-        for(int i = 1; i < 5; i++)
-        {
-            if(i!=player)playerCam.cullingMask ^= 1 << LayerMask.NameToLayer("p"+i+"Light");
-        }
-        playerCam.cullingMask ^= 1 << LayerMask.NameToLayer("p" + player + "Hide");
-        */
+        inCupboard = true;
+        
+        
     }
     
 }

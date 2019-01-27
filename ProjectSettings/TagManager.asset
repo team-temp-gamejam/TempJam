@@ -18,13 +18,13 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - pl1Light
+  - p1Light
   - Background
   - Object
   - p2Light
   - p3Light
   - p4Light
-  - 
+  - p1Hide
   - 
   - 
   - 
