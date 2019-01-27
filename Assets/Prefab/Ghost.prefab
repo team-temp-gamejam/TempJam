@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5135990630818759215}
   - component: {fileID: 5135990630818759212}
   - component: {fileID: 5135990630818759209}
-  - component: {fileID: 6237579808691794666}
-  - component: {fileID: 8589377654637898896}
+  - component: {fileID: 5361333727662698969}
+  - component: {fileID: 4024019856364200571}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   attackRange: 0.5
---- !u!212 &6237579808691794666
+--- !u!212 &5361333727662698969
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8589377654637898896
+--- !u!95 &4024019856364200571
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Animator:
   m_GameObject: {fileID: 5135990630818759213}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7d19f23fc1889a8488178fd1d6d3851e, type: 2}
+  m_Controller: {fileID: 9100000, guid: cbe57c6f2b845fe4ebc5c5747621b98a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
