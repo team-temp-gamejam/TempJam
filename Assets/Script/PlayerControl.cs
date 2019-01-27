@@ -22,6 +22,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private Camera playerCam;
 
+    public Timer timer;
+
     public bool haveLock;
     public bool compassCollected;
     public bool canLeaveCupboard;
@@ -29,6 +31,8 @@ public class PlayerControl : MonoBehaviour
     private bool inCupboard;
 
     public GameObject soundVisual;
+
+    public MapManager mapManager;
 
     public int orientation = 0;
     // Start is called before the first frame update
@@ -201,6 +205,25 @@ public class PlayerControl : MonoBehaviour
     public void Captured()
     {
         Debug.Log("captured!!");
+        timer.timeLeft -= timer.timeLeft;
+        /*
+        bool capture = true;
+        while (capture)
+        {
+            int i = Random.Range(0,mapManager.cupboards.Count-1);
+            if (mapManager.cupboards[i].GetComponent<Cupboard>().Vacant())
+            {
+                mapManager.cupboards[i].GetComponent<Cupboard>().GetComponent<BoxCollider2D>().isTrigger = false;
+                hiding();
+                mapManager.cupboards[i].GetComponent<Cupboard>().isOpen = false;
+                mapManager.cupboards[i].GetComponent<Cupboard>().insideThing = this.GetComponent<GameObject>();
+                transform.position = mapManager.cupboards[i].GetComponent<Cupboard>().transform.position;
+                SetCurrentRoom(new Vector2((transform.position.x+3.55f)/7.1f,(transform.position.y + 3.55f) / 7.1f));
+                capture = false;
+            }
+            
+        }
+        */
     }
 
     public void Die()
