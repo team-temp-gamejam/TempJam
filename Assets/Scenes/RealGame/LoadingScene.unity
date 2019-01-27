@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084b010b2c3e96d4a9786e9e6ebcb16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 0
+  scene: 2
   progressBar: {fileID: 93604174}
   loadingText: {fileID: 1681296474}
   completeText: {fileID: 2022613494}

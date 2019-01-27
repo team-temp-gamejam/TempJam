@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d4b2be0bf9c4e4ab6040c1e819b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 1
+  player: 2
   speed: 2.5
   currentRoom: {x: 0, y: 1}
   anim: {fileID: 0}
