@@ -155,7 +155,7 @@ public class Generator : MonoBehaviour
     public MapDrawer drawer;
     public GameObject ghost;
 
-    public GameObject playerObject;
+    public GameObject[] playerObject;
     public GameObject compass;
     public GameObject hourglass;
 
@@ -401,7 +401,7 @@ public class Generator : MonoBehaviour
         List<Vector2> location = this.GetPlayerSpawn();
         for (int i = 0; i < 4; i++)
         {
-            GameObject player = Instantiate(playerObject, new Vector3(location[i].x * 7.1f, location[i].y * 7.1f, 5), Quaternion.identity);
+            GameObject player = Instantiate(playerObject[i], new Vector3(location[i].x * 7.1f, location[i].y * 7.1f, 5), Quaternion.identity);
             PlayerControl controller = player.GetComponent<PlayerControl>();
             controller.SetPlayer(i + 1);
             controller.SetCurrentRoom(location[i]);
