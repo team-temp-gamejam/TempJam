@@ -21,7 +21,7 @@ public class DoorDummy : MonoBehaviour
         GhostMovement ghostMovement = other.GetComponent<GhostMovement>();
         if (ghostMovement)
         {
-            ghostMovement.CrossRoom();
+            // ghostMovement.CrossRoom();
         }
     }
 }

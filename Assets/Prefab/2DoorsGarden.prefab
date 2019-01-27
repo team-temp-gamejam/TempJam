@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8951897268316403525}
   - component: {fileID: 2147612773667890888}
   - component: {fileID: 6665967588765156630}
+  - component: {fileID: 8956868858924507624}
   m_Layer: 0
   m_Name: 2DoorsGarden
   m_TagString: Untagged
@@ -291,6 +292,20 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   upDoor: {fileID: 0}
   downDoor: {fileID: 0}
+--- !u!114 &8956868858924507624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516555061758286782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a661315ce6c05a041acc00e6bc3083ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigator: {fileID: 3842684450572096889, guid: 059f8cce7ac3f6d41991e5168efeee50,
+    type: 3}
 --- !u!1 &5274416993014500339
 GameObject:
   m_ObjectHideFlags: 0

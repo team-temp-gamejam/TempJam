@@ -175,7 +175,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6708356545683925891}
   - component: {fileID: 2909315320150678626}
-  - component: {fileID: 1033608297393511230}
   - component: {fileID: 8986846777497468863}
   - component: {fileID: 5901170424247769749}
   - component: {fileID: 8191747081515881308}
@@ -185,7 +184,8 @@ GameObject:
   - component: {fileID: 8574936213869393942}
   - component: {fileID: 7782465820566195792}
   - component: {fileID: 4817430554418328085}
-  - component: {fileID: 119789247062190755}
+  - component: {fileID: 1033608297393511230}
+  - component: {fileID: 1930103295035584306}
   m_Layer: 0
   m_Name: 1DoorBedroom
   m_TagString: Untagged
@@ -262,26 +262,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1033608297393511230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3917257581209953585, guid: 1fe67c2319c854c4a97902c42b175e54,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4282635941036839876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8931db1b3d4ab484aa596e87a48679cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  row: 0
-  column: 0
-  RoomType: 0
-  leftDoor: {fileID: 0}
-  rightDoor: {fileID: 0}
-  upDoor: {fileID: 0}
-  downDoor: {fileID: 0}
 --- !u!61 &8986846777497468863
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -525,10 +505,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2004333, y: 0.9525475}
   m_EdgeRadius: 0
---- !u!114 &119789247062190755
+--- !u!114 &1033608297393511230
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3917257581209953585, guid: 1fe67c2319c854c4a97902c42b175e54,
+    type: 3}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4282635941036839876}
@@ -544,6 +525,20 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   upDoor: {fileID: 0}
   downDoor: {fileID: 0}
+--- !u!114 &1930103295035584306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282635941036839876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a661315ce6c05a041acc00e6bc3083ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigator: {fileID: 2982661595190223052, guid: 45f3e468d30157c4fba46c848a6db3ee,
+    type: 3}
 --- !u!1 &8730506900976469217
 GameObject:
   m_ObjectHideFlags: 0

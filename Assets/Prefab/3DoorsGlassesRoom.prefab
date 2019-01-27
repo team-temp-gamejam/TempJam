@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 6772818442418003743}
   - component: {fileID: 573904850680398111}
   - component: {fileID: 4896040890914701570}
+  - component: {fileID: 7606397148448231407}
   m_Layer: 0
   m_Name: 3DoorsGlassesRoom
   m_TagString: Untagged
@@ -534,6 +535,20 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   upDoor: {fileID: 0}
   downDoor: {fileID: 0}
+--- !u!114 &7606397148448231407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6017454872873973618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a661315ce6c05a041acc00e6bc3083ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigator: {fileID: 6550597675576824022, guid: 061e93938b306cf478c9970da5f84ed8,
+    type: 3}
 --- !u!1 &6103978144927791354
 GameObject:
   m_ObjectHideFlags: 0
