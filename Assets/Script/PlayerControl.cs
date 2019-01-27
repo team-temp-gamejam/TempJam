@@ -163,6 +163,7 @@ public class PlayerControl : MonoBehaviour
         while (!footStep.isPlaying)
         {
             footStep.Play();
+            EventRelay.Notify(transform.position, 1);
         }
         yield return 0;
     }

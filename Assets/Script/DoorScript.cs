@@ -78,6 +78,7 @@ public class DoorScript : MonoBehaviour
     {
         animator.SetTrigger("PassDoor");
         doorOpen.Play();
+        EventRelay.Notify(transform.position, 2);
     }
 
     public void SetDoorLock(bool isLock)
