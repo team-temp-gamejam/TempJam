@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 4470197965604765484}
   - component: {fileID: 6695453252062551238}
   - component: {fileID: 896431826337985979}
+  - component: {fileID: 5506339814330744392}
   m_Layer: 0
   m_Name: 1DoorGarden
   m_TagString: Untagged
@@ -557,6 +558,20 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   upDoor: {fileID: 0}
   downDoor: {fileID: 0}
+--- !u!114 &5506339814330744392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283190028823629624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a661315ce6c05a041acc00e6bc3083ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigator: {fileID: 1405939493228256774, guid: e798a713d0463bc42867d26492089032,
+    type: 3}
 --- !u!1001 &2985751889035952550
 PrefabInstance:
   m_ObjectHideFlags: 0

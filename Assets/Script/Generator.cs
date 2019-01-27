@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Room
 {
@@ -17,7 +18,7 @@ public class Room
 
     public int GetRoomType()
     {
-        if(type == -1)
+        if (type == -1)
         {
             this.type = this.ToRoomType();
         }
@@ -38,7 +39,7 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        type = Random.Range(16, 20);
+                        type = UnityEngine.Random.Range(16, 20);
                     }
                     else
                     {
@@ -116,7 +117,7 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        type = Random.Range(0, 2) * 2 + 8;
+                        type = UnityEngine.Random.Range(0, 2) * 2 + 8;
                     }
                     else
                     {
@@ -152,8 +153,11 @@ public class Generator : MonoBehaviour
     private List<Room> linkable = new List<Room>();
     public float linkRate;
     public MapDrawer drawer;
+    public GhostMovement ghost;
 
     public GameObject playerObject;
+    public GameObject compass;
+    public GameObject hourglass;
 
     public Camera[] cameras = new Camera[4];
 
@@ -276,9 +280,9 @@ public class Generator : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < dimension; i++)
+        for (int i = 0; i < dimension; i++)
         {
-            for(int j=0;j<dimension; j++)
+            for (int j = 0; j < dimension; j++)
             {
                 map[i][j].GetRoomType();
             }
@@ -360,6 +364,7 @@ public class Generator : MonoBehaviour
         GenerateObject(ref map);
 
         GeneratePlayer();
+        // SpawnGhost();
     }
 
     private void GenerateObject(ref List<List<Room>> map)
@@ -379,11 +384,11 @@ public class Generator : MonoBehaviour
             for (int j = 0; j < dimension; j++)
             {
                 GameObject prefabedRoom;
-                
+
                 int roomTheme = Random.Range(0, 2);
-                prefabedRoom = roomPrefabs[(int)Mathf.Floor(map[i][j].type/4)*3 + roomTheme];
+                prefabedRoom = roomPrefabs[(int)Mathf.Floor(map[i][j].type / 4) * 3 + roomTheme];
                 // - startPosition[map[i][j].type % 4] + 
-                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 10), Quaternion.Euler(0, 0, startPosition[(int)Mathf.Floor(map[i][j].type/4)] + (-90) * (map[i][j].type % 4)), mapObject.transform);
+                GameObject roomObject = Instantiate(prefabedRoom, new Vector3(i * 7.1f, j * 7.1f, 10), Quaternion.Euler(0, 0, startPosition[(int)Mathf.Floor(map[i][j].type / 4)] + (-90) * (map[i][j].type % 4)), mapObject.transform);
                 roomObject.GetComponent<RoomScript>().setTilePosition(j, i);
                 roomObject.GetComponent<RoomScript>().RoomType = map[i][j].type;
                 map[i][j].interior = roomObject;
@@ -403,9 +408,15 @@ public class Generator : MonoBehaviour
 
             controller.orientation = Random.Range(0, 3) * 90;
 
+            GameObject.Find("MapManager").GetComponent<MapManager>().players.Add(controller.gameObject);
+
             cameras[i].GetComponent<CameraFollowScript>().player = player;
-            // Rotate things
         }
+    }
+
+    private void SpawnGhost()
+    {
+        ghost.SetMap(map);
     }
 
     private int CountLink(int dimension)
@@ -452,18 +463,20 @@ public class Generator : MonoBehaviour
         return result;
     }
 
-    public GameObject GetRoom(int row, int column) {
+    public GameObject GetRoom(int row, int column)
+    {
         // return room[row][column];
         return map[column][row].interior;
     }
 
-    public GameObject GetRoom(Vector2 index) {
+    public GameObject GetRoom(Vector2 index)
+    {
         return map[(int)index.x][(int)index.y].interior;
     }
 
     public void Draw()
     {
-        if(drawer != null)
+        if (drawer != null)
         {
             drawer.DrawMap(map);
         }
@@ -473,6 +486,36 @@ public class Generator : MonoBehaviour
     {
         Generate();
         GameObject.Find("MapManager").GetComponent<MapManager>().ScanMap();
+        GenerateItem();
+    }
+
+    private void GenerateItem()
+    {
+        List<Cupboard> cupboard = new List<Cupboard>();
+        foreach(GameObject obj in GameObject.Find("MapManager").GetComponent<MapManager>().cupboards)
+        {
+            cupboard.Add(obj.GetComponent<Cupboard>());
+        }
+        while(cupboard.Count > 0)
+        {
+            Cupboard deciding = cupboard[Random.Range(0, cupboard.Count)];
+            if(cupboard.Count % 10 == 0)
+            {
+                deciding.insideThing = Instantiate(compass,deciding.gameObject.transform.position + new Vector3(0,0,-1),Quaternion.identity);
+            }
+            if(cupboard.Count % 10 == 9)
+            {
+                deciding.insideThing = Instantiate(hourglass, deciding.gameObject.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+            }
+            if(cupboard.Count % 10 != 0 && cupboard.Count % 10 != 9)
+            {
+                if(Random.Range(0,3) == 0)
+                {
+                    deciding.isOpen = true;
+                }
+            }
+            cupboard.Remove(deciding);
+        }
     }
 
     // Update is called once per frame

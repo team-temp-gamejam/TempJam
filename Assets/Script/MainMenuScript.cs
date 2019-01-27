@@ -8,6 +8,8 @@ using UnityEngine.Audio;
 public class MainMenuScript : MonoBehaviour
 {
     [SerializeField]
+    private AudioMixer masterMixer;
+    [SerializeField]
     private GameObject exitGamePanel;
     [SerializeField]
     private GameObject optionPanel;
@@ -30,12 +32,23 @@ public class MainMenuScript : MonoBehaviour
         exitButton.onClick.AddListener(exitGame);
         exitConfirmButton.onClick.AddListener(exitConfirm);
         exitCancelButton.onClick.AddListener(exitCancel);
+        sfxSlider.onValueChanged.AddListener(SFXAdjust);
+        bgmSlider.onValueChanged.AddListener(BGMAdjust);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void SFXAdjust(float soundLevel)
+    {
+        masterMixer.SetFloat("SFX", soundLevel);
+    }
+    void BGMAdjust(float soundLevel)
+    {
+        masterMixer.SetFloat("BGM", soundLevel);
     }
 
     public void openGameSetting()

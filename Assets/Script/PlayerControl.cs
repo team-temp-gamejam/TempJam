@@ -27,6 +27,8 @@ public class PlayerControl : MonoBehaviour
     private bool stepping;
     private bool inCupboard;
 
+    public GameObject soundVisual;
+
     public int orientation = 0;
     // Start is called before the first frame update
     void Start()
@@ -155,7 +157,7 @@ public class PlayerControl : MonoBehaviour
     //rotate camera
     public void Rotate()
     {
-
+        //orientation = (orientation + 90) % 360;
     }
 
     IEnumerator footStepSound()

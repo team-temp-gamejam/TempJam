@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class GhostMovement : MonoBehaviour
 {
     public float speed;
+    public Generator generator;
     private NavMeshAgent agent;
     private Transform nav;
 
@@ -17,13 +18,12 @@ public class GhostMovement : MonoBehaviour
     private GameObject room;
     private Vector2[] doorPositions = new Vector2[4];
     public List<int> direction = new List<int>();
-    private Rigidbody2D rg;
 
     // Start is called before the first frame update
     void Start()
     {
         position = new Vector2Int();
-        rg = GetComponent<Rigidbody2D>();
+        SetMap(generator.map);
     }
 
     // Update is called once per frame
@@ -36,9 +36,8 @@ public class GhostMovement : MonoBehaviour
     {
         if (direction.Count > 0)
         {
-            // rg.MovePosition(rg.position + (doorPositions[direction[0]] - rg.position).normalized * speed * Time.deltaTime);
             agent.SetDestination(RoomToNav(doorPositions[direction[0]]));
-            //Debug.Log(RoomToNav(doorPositions[direction[0]]));
+            // Debug.Log(RoomToNav(doorPositions[direction[0]]));
             transform.position = NavToRoom(agent.transform.position);
         }
         else
@@ -76,26 +75,26 @@ public class GhostMovement : MonoBehaviour
         NavMeshSurface navMeshSurface = nav.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
         agent = nav.GetComponentInChildren<NavMeshAgent>();
-        agent.transform.position = RoomToNav(transform.position);
+        agent.Warp(RoomToNav(transform.position));
     }
 
     private Vector3 RoomToNav(Vector3 pos)
     {
-        Vector3 vector = Quaternion.Euler(0, 0, 90 * (map[position.x][position.y].type % 4)) * (pos - room.transform.position);
-        //Debug.Log(vector);
+        // Vector3 vector = Quaternion.Euler(0, 0, -90 * (map[position.x][position.y].type % 4)) * (pos - room.transform.position);
+        Vector3 vector = Quaternion.Euler(0, 0, -room.transform.rotation.eulerAngles.z) * (pos - room.transform.position);
         Vector3 navRoot = nav.transform.position;
         return new Vector3(vector.x + navRoot.x, 0, vector.y + navRoot.z);
     }
 
     private Vector3 NavToRoom(Vector3 pos)
     {
-        Vector3 vector = Quaternion.Euler(0, 90 * (map[position.x][position.y].type % 4), 0) * (pos - nav.transform.position);
+        // Vector3 vector = Quaternion.Euler(0, -90 * (map[position.x][position.y].type % 4), 0) * (pos - nav.transform.position);
+        Vector3 vector = Quaternion.Euler(0, -room.transform.rotation.eulerAngles.z, 0) * (pos - nav.transform.position);
         Vector3 roomRoot = room.transform.position;
-        return new Vector3(vector.x + roomRoot.x, vector.z + roomRoot.y, 0);
+        return new Vector3(vector.x + roomRoot.x, vector.z + roomRoot.y, roomRoot.z);
     }
 
-    // public void CrossRoom(Vector3 warpPosition)
-    public void CrossRoom()
+    public void CrossRoom(Vector3 warpPosition)
     {
         Vector2Int displacement = new Vector2Int();
         switch (direction[0])
@@ -116,8 +115,8 @@ public class GhostMovement : MonoBehaviour
                 break;
         }
         direction.RemoveAt(0);
-        // transform.position = warpPosition;
-        transform.position += new Vector3(displacement.x * 4, displacement.y * 4);
+        transform.position = warpPosition;
+        // transform.position += new Vector3(displacement.x * 4, displacement.y * 4);
 
         position += displacement;
         room = map[position.x][position.y].interior;
@@ -128,13 +127,13 @@ public class GhostMovement : MonoBehaviour
 
     void GetDoors()
     {
-        DoorDummy[] doors = room.GetComponentsInChildren<DoorDummy>();
+        DoorScript[] doors = room.GetComponentsInChildren<DoorScript>();
         Room roomMap = map[position.x][position.y];
 
         Vector2 doorPos = doors[0].transform.position;
         if (roomMap.upActive)
         {
-            foreach (DoorDummy door in doors)
+            foreach (DoorScript door in doors)
             {
                 if (door.transform.position.y > doorPos.y)
                 {
@@ -145,7 +144,7 @@ public class GhostMovement : MonoBehaviour
         }
         if (roomMap.rightActive)
         {
-            foreach (DoorDummy door in doors)
+            foreach (DoorScript door in doors)
             {
                 if (door.transform.position.x > doorPos.x)
                 {
@@ -156,7 +155,7 @@ public class GhostMovement : MonoBehaviour
         }
         if (roomMap.downActive)
         {
-            foreach (DoorDummy door in doors)
+            foreach (DoorScript door in doors)
             {
                 if (door.transform.position.y < doorPos.y)
                 {
@@ -167,7 +166,7 @@ public class GhostMovement : MonoBehaviour
         }
         if (roomMap.leftActive)
         {
-            foreach (DoorDummy door in doors)
+            foreach (DoorScript door in doors)
             {
                 if (door.transform.position.x < doorPos.x)
                 {

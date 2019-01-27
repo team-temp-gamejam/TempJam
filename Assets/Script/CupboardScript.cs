@@ -27,20 +27,6 @@ public class CupboardScript : InteractItem
     override public void Interact()
     {
         Cupboard parent = transform.parent.GetComponent<Cupboard>();
-        if(!parent.isOpen)parent.SetOpen(!parent.isOpen);
-        else if (!parent.vacant)
-        {
-            if (parent.insideThing.name == "Compass")
-            {
-                interactingPlayer.compassCollected = true;
-            }
-            if(parent.insideThing.tag == "InteractItem")
-            {
-                parent.GetComponent<InteractItem>().Interact();
-            }
-        }
-        else if (parent.isOpen) parent.SetOpen(!parent.isOpen);
-
-
+        parent.SetOpen(!parent.isOpen, interactingPlayer);
     }
 }
