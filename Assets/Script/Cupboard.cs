@@ -37,6 +37,10 @@ public class Cupboard : MonoBehaviour
         {
             transform.GetComponent<BoxCollider2D>().isTrigger = true;
         }
+        else
+        {
+            transform.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,12 +51,34 @@ public class Cupboard : MonoBehaviour
         
     }
 
-    public void SetOpen(bool isOpen)
+    public void SetOpen(bool isOpen, PlayerControl opener)
     {
         this.isOpen = isOpen;
         if (isOpen)
         {
             openSound.Play();
+            if (!vacant)
+            {
+                if(insideThing.GetComponent<Compass>() != null)
+                {
+                    if (!opener.compassCollected)
+                    {
+                        opener.compassCollected = true;
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                if (insideThing.GetComponent<HourGlass>() != null)
+                {
+
+                }
+                if (insideThing.GetComponent<PlayerControl>() != null)
+                {
+
+                }
+            }
         }
         else
         {

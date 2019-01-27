@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
     //rotate camera
     public void Rotate()
     {
-
+        //orientation = (orientation + 90) % 360;
     }
 
     IEnumerator footStepSound()

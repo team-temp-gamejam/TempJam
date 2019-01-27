@@ -15,20 +15,15 @@ public class MapManager : MonoBehaviour
 
     }
 
-    public void ScanMap()
-    {
-        Debug.Log("Scaning");
+    public void ScanMap() {
+        //Debug.Log("Scaning");
         Transform map = GameObject.Find("Map").transform;
-        if (map != null)
-        {
-            Debug.Log("map found");
-            foreach (Transform room in map)
-            {
-                foreach (Transform item in room)
-                {
-                    Debug.Log(item);
-                    if (item.gameObject.tag == "Player")
-                    {
+        if (map != null) {
+            //Debug.Log("map found");
+            foreach (Transform room in map) {
+                foreach (Transform item in room) {
+                    //Debug.Log(item);
+                    if (item.gameObject.tag == "Player") {
                         players.Add(item.gameObject);
                     }
                     if (item.gameObject.tag == "Cupboard")
@@ -46,6 +41,6 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Scan complete");
+        //Debug.Log("Scan complete");
     }
 }
