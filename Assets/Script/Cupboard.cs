@@ -8,10 +8,14 @@ public class Cupboard : MonoBehaviour
     public SpriteRenderer sprite;
     public Sprite open;
     public Sprite closed;
+<<<<<<< HEAD
     public bool vacant;
     public GameObject insideThing;
     public Vector2 currentRoom;
 
+=======
+    public AudioSource openSound, closeSound;
+>>>>>>> 9b06287d3487b451a0bc1a1d99abfef3006dd838
     // Start is called before the first frame update
     void Start()
     {
@@ -50,5 +54,13 @@ public class Cupboard : MonoBehaviour
     public void SetOpen(bool isOpen)
     {
         this.isOpen = isOpen;
+        if (isOpen)
+        {
+            openSound.Play();
+        }
+        else
+        {
+            closeSound.Play();
+        }
     }
 }

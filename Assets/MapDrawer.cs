@@ -29,7 +29,7 @@ public class MapDrawer : MonoBehaviour
                 {
                     GameObject mapPiece = Instantiate(pieces[rooms[i][j].GetRoomType()], new Vector3((i - ((rooms.Count - 1) / 2f)) * 30, (j - ((rooms.Count - 1) / 2f)) * 30, 0), Quaternion.identity) as GameObject;
                     mapPiece.transform.SetParent(map[n].transform, false);
-                    map[n].SetActive(true);
+                    //map[n].SetActive(true);
                 }
             }
         }
