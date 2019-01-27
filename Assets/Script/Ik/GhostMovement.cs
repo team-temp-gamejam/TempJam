@@ -5,24 +5,31 @@ using UnityEngine.AI;
 
 public class GhostMovement : MonoBehaviour
 {
-    public float speed;
     public Generator generator;
+
+    private MapManager mapManager;
+
+    public float speed;
+    public float attackRange;
+    private Vector2Int destination;
+    private List<int> direction = new List<int>();
+    private float currentScore;
+    private int mode; // 0 = find, 1 = chase
+
     private NavMeshAgent agent;
     private Transform nav;
 
-    public Vector2Int destination;
     private List<List<float>> score;
-    private float currentScore;
     private List<List<Room>> map;
     private Vector2Int position;
     private GameObject room;
     private Vector2[] doorPositions = new Vector2[4];
-    public List<int> direction = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {
         position = new Vector2Int();
+        mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
         SetMap(generator.map);
     }
 
@@ -34,6 +41,40 @@ public class GhostMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        GameObject target = GetClosestTargetInRoom();
+        if (target == null)
+        {
+            mode = 0;
+        }
+        else
+        {
+            mode = 1;
+        }
+
+        if (mode == 0)
+        {
+            Find();
+        }
+        else
+        {
+            Chase(target);
+            Attack(target);
+        }
+    }
+
+    void Attack(GameObject target)
+    {
+        Vector3 distance = target.transform.position - transform.position;
+        distance.z = 0;
+        Debug.Log(distance.magnitude);
+        if (distance.magnitude < attackRange)
+        {
+            target.GetComponent<PlayerControl>().Captured();
+        }
+    }
+
+    void Find()
+    {
         if (direction.Count > 0)
         {
             agent.SetDestination(RoomToNav(doorPositions[direction[0]]));
@@ -44,6 +85,34 @@ public class GhostMovement : MonoBehaviour
         {
             SetDestination(findBestDestination());
         }
+    }
+
+    void Chase(GameObject target)
+    {
+        agent.SetDestination(RoomToNav(target.transform.position));
+        // Debug.Log(RoomToNav(doorPositions[direction[0]]));
+        transform.position = NavToRoom(agent.transform.position);
+    }
+
+    GameObject GetClosestTargetInRoom()
+    {
+        GameObject result = null;
+        float distance = 100;
+        foreach (GameObject target in mapManager.players)
+        {
+            Vector2 targetPositionFloat = target.GetComponent<PlayerControl>().GetCurrentRoom();
+            Vector2Int targetPosition = new Vector2Int((int)targetPositionFloat.x, (int)targetPositionFloat.y);
+            if (targetPosition != position)
+            {
+                continue;
+            }
+            if ((target.transform.position - transform.position).magnitude < distance)
+            {
+                distance = (target.transform.position - transform.position).magnitude;
+                result = target;
+            }
+        }
+        return result;
     }
 
     public void SetMap(List<List<Room>> map)
@@ -75,6 +144,7 @@ public class GhostMovement : MonoBehaviour
         NavMeshSurface navMeshSurface = nav.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
         agent = nav.GetComponentInChildren<NavMeshAgent>();
+        agent.speed = speed;
         agent.Warp(RoomToNav(transform.position));
     }
 
