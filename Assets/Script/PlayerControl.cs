@@ -25,6 +25,8 @@ public class PlayerControl : MonoBehaviour
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
+
+    public int orientation = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.gameObject.transform.rotation = Quaternion.Euler(0, 0, orientation);
         GetMoveInput();
         Move();
         if (stepping)
@@ -156,6 +158,11 @@ public class PlayerControl : MonoBehaviour
                 col.gameObject.GetComponent<InteractItem>().Interact();
             }
         }
+    }
+
+    public void SetPlayer(int player)
+    {
+        this.player = player;
     }
 
     public void hiding()

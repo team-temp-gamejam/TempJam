@@ -153,6 +153,10 @@ public class Generator : MonoBehaviour
     public float linkRate;
     public MapDrawer drawer;
 
+    public GameObject playerObject;
+
+    public Camera[] cameras = new Camera[4];
+
     public List<List<int>> playerStart = new List<List<int>>();
 
     public void Generate()
@@ -354,6 +358,8 @@ public class Generator : MonoBehaviour
         }*/
 
         GenerateObject(ref map);
+
+        GeneratePlayer();
     }
 
     private void GenerateObject(ref List<List<Room>> map)
@@ -382,6 +388,23 @@ public class Generator : MonoBehaviour
                 roomObject.GetComponent<RoomScript>().RoomType = map[i][j].type;
                 map[i][j].interior = roomObject;
             }
+        }
+    }
+
+    private void GeneratePlayer()
+    {
+        List<Vector2> location = this.GetPlayerSpawn();
+        for(int i = 0; i < 4; i++)
+        {
+            GameObject player = Instantiate(playerObject, new Vector3(location[i].x * 7.1f, location[i].y * 7.1f, 5), Quaternion.identity);
+            PlayerControl controller = player.GetComponent<PlayerControl>();
+            controller.SetPlayer(i+1);
+            controller.SetCurrentRoom(location[i]);
+
+            controller.orientation = Random.Range(0, 3) * 90;
+
+            cameras[i].GetComponent<CameraFollowScript>().player = player;
+            // Rotate things
         }
     }
 
