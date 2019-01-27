@@ -28,12 +28,20 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField]
     private PlayerControl p1, p2, p3, p4;
 
+    [SerializeField]
+    public GameObject winning, losing;
+
+    [SerializeField]
+    private Button retry, toMainLose, playAgain, toMainWin;
+
+    private Scene thisScene;
     private bool gameIsPaused;
     public bool p1Alerting, p2Alerting, p3Alerting, p4Alerting;
 
     // Start is called before the first frame update
     void Start()
     {
+        thisScene = SceneManager.GetActiveScene();
         gameIsPaused = false;
         resumeButton.onClick.AddListener(gamePaused);
         optionButton.onClick.AddListener(openOption);
@@ -46,6 +54,10 @@ public class InGameUIManager : MonoBehaviour
         yesExitGameButton.onClick.AddListener(exitGame);
         SFXSlider.onValueChanged.AddListener(SFXAdjust);
         BGMSlider.onValueChanged.AddListener(BGMAdjust);
+        toMainLose.onClick.AddListener(exitToMainMenu);
+        toMainWin.onClick.AddListener(exitToMainMenu);
+        retry.onClick.AddListener(playGameAgain);
+        playAgain.onClick.AddListener(playGameAgain);
     }
 
     // Update is called once per frame
@@ -206,5 +218,17 @@ public class InGameUIManager : MonoBehaviour
             p4Alert.SetActive(true);
             p4Alerting = true;
         }
+    }
+    private void playGameAgain()
+    {
+        Application.LoadLevel(thisScene.name);
+    }
+    public void losingScreen()
+    {
+        losing.SetActive(true);
+    }
+    public void winningScreen()
+    {
+        winning.SetActive(true);
     }
 }
