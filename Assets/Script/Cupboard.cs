@@ -8,10 +8,17 @@ public class Cupboard : MonoBehaviour
     public SpriteRenderer sprite;
     public Sprite open;
     public Sprite closed;
+    public bool vacant;
+    public GameObject insideThing;
+    public Vector2 currentRoom;
+
     // Start is called before the first frame update
     void Start()
     {
         sprite = this.GetComponent<SpriteRenderer>();
+
+        //test
+        vacant = true;
     }
 
     // Update is called once per frame
@@ -25,6 +32,19 @@ public class Cupboard : MonoBehaviour
         {
             sprite.sprite = closed;
         }
+
+        if (isOpen && vacant)
+        {
+            transform.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        
+        collision.gameObject.GetComponent<PlayerControl>().hiding();
+        
     }
 
     public void SetOpen(bool isOpen)

@@ -17,14 +17,21 @@ public class PlayerControl : MonoBehaviour
     private Animator anim;
 
     [SerializeField]
-    private AudioSource footStep, lockerClose, lockerOpenShake, lockerOpen, lockerShake, pickUp, wink;
+    private AudioSource footStep, lockerShake, pickUp, wink;
 
+    [SerializeField]
+    private Camera playerCam;
+
+    public bool compassCollected;
+    public bool canLeaveCupboard;
     private bool stepping;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         stepping = false;
+        compassCollected = false;
+        canLeaveCupboard = true;
     }
 
     //need to set currentRoom once at spawning player
@@ -143,8 +150,24 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col) {
         if (Input.GetButtonDown("p"+player+"Action")) {
-            if (col.gameObject.tag == "Interactable")     
+            if (col.gameObject.tag == "Interactable")
+            {
+                
                 col.gameObject.GetComponent<InteractItem>().Interact();
+            }
         }
     }
+
+    public void hiding()
+    {
+        Debug.Log("Hiding");
+        /*
+        for(int i = 1; i < 5; i++)
+        {
+            if(i!=player)playerCam.cullingMask ^= 1 << LayerMask.NameToLayer("p"+i+"Light");
+        }
+        playerCam.cullingMask ^= 1 << LayerMask.NameToLayer("p" + player + "Hide");
+        */
+    }
+    
 }

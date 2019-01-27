@@ -48,6 +48,26 @@ public class InGameUIManager : MonoBehaviour
             gamePaused();
         }
 
+        if (p1Alerting && Input.GetButtonDown("p1Action"))
+        {
+            p1Alert.SetActive(false);
+        }
+
+        if (p2Alerting && Input.GetButtonDown("p2Action"))
+        {
+            p2Alert.SetActive(false);
+        }
+
+        if (p3Alerting && Input.GetButtonDown("p3Action"))
+        {
+            p3Alert.SetActive(false);
+        }
+
+        if (p4Alerting && Input.GetButtonDown("p4Action"))
+        {
+            p4Alert.SetActive(false);
+        }
+
         //if player collect another compass
 
         //if player is busted
@@ -121,21 +141,25 @@ public class InGameUIManager : MonoBehaviour
         {
             p1AlertText.text = "You already have a compass!";
             p1Alert.SetActive(true);
+            p1Alerting = true;
         }
         if (player == 2)
         {
             p2AlertText.text = "You already have a compass!";
             p2Alert.SetActive(true);
+            p2Alerting = true;
         }
         if (player == 3)
         {
             p3AlertText.text = "You already have a compass!";
             p3Alert.SetActive(true);
+            p3Alerting = true;
         }
         if (player == 4)
         {
             p4AlertText.text = "You already have a compass!";
             p4Alert.SetActive(true);
+            p4Alerting = true;
         }
     }
 
@@ -145,21 +169,25 @@ public class InGameUIManager : MonoBehaviour
         {
             p1AlertText.text = "You are busted by a ghost.";
             p1Alert.SetActive(true);
+            p1Alerting = true;
         }
         if(player == 2)
         {
             p2AlertText.text = "You are busted by a ghost.";
             p2Alert.SetActive(true);
+            p2Alerting = true;
         }
         if (player == 3)
         {
             p3AlertText.text = "You are busted by a ghost.";
             p3Alert.SetActive(true);
+            p3Alerting = true;
         }
         if (player == 4)
         {
             p4AlertText.text = "You are busted by a ghost.";
             p4Alert.SetActive(true);
+            p4Alerting = true;
         }
     }
 }

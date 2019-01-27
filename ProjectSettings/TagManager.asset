@@ -15,12 +15,12 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - player
+  - pl1Light
   - Background
   - Object
-  - 
-  - 
-  - 
+  - p2Light
+  - p3Light
+  - p4Light
   - 
   - 
   - 

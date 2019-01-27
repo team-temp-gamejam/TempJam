@@ -8,6 +8,7 @@ public class CameraFollowScript : MonoBehaviour
     [SerializeField]
     private float camSpeed;
     public GameObject player;
+    public GameObject compass;
     private Vector2 RoomIndex; // row and column of room in array
     private Vector2 RoomPosition; // position in world coordinate
     
@@ -20,6 +21,7 @@ public class CameraFollowScript : MonoBehaviour
     void Start()
     {  
         generator = GameObject.Find("Generator").GetComponent<Generator>();
+        compass.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,6 +30,10 @@ public class CameraFollowScript : MonoBehaviour
         updateRoom();
         cameraOffset = new Vector2(player.transform.position.x - RoomPosition.x, player.transform.position.y - RoomPosition.y);
         transform.position = Vector2.Lerp(transform.position, RoomPosition + (cameraOffset * AxisMultiply), camSpeed);
+        if (player.GetComponent<PlayerControl>().compassCollected)
+        {
+            compass.SetActive(true);
+        }
     }
 
     public void SetRoom(int column, int row) {
