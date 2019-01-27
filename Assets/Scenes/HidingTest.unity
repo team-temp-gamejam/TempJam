@@ -288,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camSpeed: 0.07
   player: {fileID: 773708720}
+  compass: {fileID: 0}
   AxisMultiply: {x: 0.2, y: 0.6}
 --- !u!4 &198668835 stripped
 Transform:
@@ -541,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camSpeed: 0.1
   player: {fileID: 0}
+  compass: {fileID: 0}
   AxisMultiply: {x: 0.3, y: 0.5}
 --- !u!1 &608547690
 GameObject:
@@ -776,6 +778,133 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &613458771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 613458773}
+  - component: {fileID: 613458772}
+  m_Layer: 0
+  m_Name: footStep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &613458772
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613458771}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1a27ebcca5100f5418f155f61cbf7bc1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &613458773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613458771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.128107, y: 24.168116, z: 5.015625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634424480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1241,14 @@ MonoBehaviour:
   player: 1
   speed: 2.5
   currentRoom: {x: 0, y: 1}
+  anim: {fileID: 0}
+  footStep: {fileID: 613458772}
+  lockerShake: {fileID: 0}
+  pickUp: {fileID: 0}
+  wink: {fileID: 0}
+  playerCam: {fileID: 165922358}
+  compassCollected: 0
+  canLeaveCupboard: 0
 --- !u!61 &773708724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1459,6 +1596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camSpeed: 0.1
   player: {fileID: 0}
+  compass: {fileID: 0}
   AxisMultiply: {x: 0.3, y: 0.5}
 --- !u!1 &1113899910
 GameObject:
@@ -1507,6 +1645,7 @@ MonoBehaviour:
   - {fileID: 2816918184826022282, guid: 22b594298598245b98c154eae9e6dd5e, type: 3}
   - {fileID: 5151822801948814705, guid: 99a00aeabe5914370b0005ac81d12826, type: 3}
   linkRate: 0.5
+  drawer: {fileID: 0}
 --- !u!4 &1113899912
 Transform:
   m_ObjectHideFlags: 0
@@ -1898,24 +2037,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6447a8f9168968479e988527e8a9b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
-  roomPrefab:
-  - {fileID: 4282635941036839876, guid: c1eb34387302f4fc7a5c57a9f697ed0f, type: 3}
-  - {fileID: 8283190028823629624, guid: 5753e2e25eda0429eac248321c4af691, type: 3}
-  - {fileID: 1718468052704954056, guid: 374848a37ff1b4084a01479654ace562, type: 3}
-  - {fileID: 3989641736618669612, guid: 62b86b28498c0434bb81e6f32009d08e, type: 3}
-  - {fileID: 5167308528136823209, guid: 63a89f5cdb511407ea0d8c337de74ae3, type: 3}
-  - {fileID: 3989641736618669612, guid: 62b86b28498c0434bb81e6f32009d08e, type: 3}
-  - {fileID: 4508792310932616722, guid: ce2de226e08e64b199d8553e3689a0cd, type: 3}
-  - {fileID: 2516555061758286782, guid: 9ad0e383d119d4130986d5ab93b9d0a3, type: 3}
-  - {fileID: 4508792310932616722, guid: ce2de226e08e64b199d8553e3689a0cd, type: 3}
-  - {fileID: 3973529691718270169, guid: 5198690a0460f4d718afb9850d6f61bb, type: 3}
-  - {fileID: 6017454872873973618, guid: ad8900072b2a44d7ea69a259b310a7aa, type: 3}
-  - {fileID: 9123756442482439879, guid: 2ec503433e12545cb87af2f45d747106, type: 3}
-  - {fileID: 6116775098039326180, guid: 9a8ecc2239d2743eb9a3e0874af10f14, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  cupboards: []
+  doors: []
+  players: []
+  ghost: {fileID: 0}
 --- !u!4 &1612259608
 Transform:
   m_ObjectHideFlags: 0
@@ -2027,6 +2152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camSpeed: 0.1
   player: {fileID: 0}
+  compass: {fileID: 0}
   AxisMultiply: {x: 0.3, y: 0.5}
 --- !u!1 &2061478675
 GameObject:

@@ -463,6 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camSpeed: 0.1
   player: {fileID: 773708720}
+  compass: {fileID: 0}
   AxisMultiply: {x: 0.3, y: 0.5}
 --- !u!1 &217893451
 GameObject:
@@ -2860,12 +2861,12 @@ MonoBehaviour:
   currentRoom: {x: 0, y: 1}
   anim: {fileID: 773708726}
   footStep: {fileID: 818104798}
-  lockerClose: {fileID: 0}
-  lockerOpenShake: {fileID: 0}
-  lockerOpen: {fileID: 0}
   lockerShake: {fileID: 0}
   pickUp: {fileID: 0}
   wink: {fileID: 0}
+  playerCam: {fileID: 0}
+  compassCollected: 0
+  canLeaveCupboard: 0
 --- !u!61 &773708724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4998,9 +4999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6447a8f9168968479e988527e8a9b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
-  roomPrefab: []
+  cupboards: []
+  doors: []
+  players: []
+  ghost: {fileID: 0}
 --- !u!4 &1612259608
 Transform:
   m_ObjectHideFlags: 0
