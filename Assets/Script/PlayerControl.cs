@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private Camera playerCam;
 
+    public bool haveLock;
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
@@ -40,11 +41,13 @@ public class PlayerControl : MonoBehaviour
     }
 
     //need to set currentRoom once at spawning player
-    public void SetCurrentRoom(Vector2 position) {
+    public void SetCurrentRoom(Vector2 position)
+    {
         currentRoom = position;
     }
 
-    public Vector2 GetCurrentRoom() {
+    public Vector2 GetCurrentRoom()
+    {
         return currentRoom;
     }
 
@@ -89,21 +92,21 @@ public class PlayerControl : MonoBehaviour
     //move
     public void Move()
     {
-        
+
         if (direction.sqrMagnitude > 1)
         {
             direction = direction.normalized;
         }
         transform.Translate(direction * speed * Time.deltaTime);
-        
-        
+
+
     }
 
     //input for moving
     private void GetMoveInput()
     {
-        
-        anim.SetBool("isWalk" , false);
+
+        anim.SetBool("isWalk", false);
         direction = Vector2.zero;
         if (!inCupboard)
         {
@@ -153,7 +156,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-    
+
     //rotate camera
     public void Rotate()
     {
@@ -169,13 +172,21 @@ public class PlayerControl : MonoBehaviour
         yield return 0;
     }
 
-    private void OnTriggerStay2D(Collider2D col) {
-        if (Input.GetButtonDown("p"+player+"Action")) {
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (Input.GetButtonDown("p" + player + "Action"))
+        {
             if (col.gameObject.tag == "Interactable")
             {
-                
+                if (col.parent.gameObject.tag == "Door") {
+                    if (!haveLock) return;
+                    
+                }
                 col.gameObject.GetComponent<InteractItem>().Interact();
             }
+
+            
+
         }
     }
 
@@ -191,5 +202,15 @@ public class PlayerControl : MonoBehaviour
         
         
     }
-    
+
+    public void Captured()
+    {
+        Debug.Log("captured!!");
+    }
+
+    public void Die()
+    {
+        Debug.Log("captured!!");
+    }
+
 }

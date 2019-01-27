@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Cupboard : MonoBehaviour
 {
-    public bool isOpen;
+    public bool isOpen = false;
     public SpriteRenderer sprite;
     public Sprite open;
     public Sprite closed;
-    public bool vacant;
     public GameObject insideThing;
     public Vector2 currentRoom;
     public AudioSource openSound, closeSound;
@@ -16,9 +15,6 @@ public class Cupboard : MonoBehaviour
     void Start()
     {
         sprite = this.GetComponent<SpriteRenderer>();
-
-        //test
-        vacant = true;
     }
 
     // Update is called once per frame
@@ -33,7 +29,7 @@ public class Cupboard : MonoBehaviour
             sprite.sprite = closed;
         }
 
-        if (isOpen && vacant)
+        if (isOpen && Vacant())
         {
             transform.GetComponent<BoxCollider2D>().isTrigger = true;
         }
@@ -58,17 +54,23 @@ public class Cupboard : MonoBehaviour
         if (isOpen)
         {
             openSound.Play();
-            if (!vacant)
+            if (!Vacant())
             {
+                //Debug.Log("Something");
                 if(insideThing.GetComponent<Compass>() != null)
                 {
+                    //Debug.Log("Compass Found");
                     if (!opener.compassCollected)
                     {
                         opener.compassCollected = true;
+                        Destroy(insideThing);
+                        //Debug.Log("Compass Lost");
                     }
                     else
                     {
-                        
+                        // Alert
+
+                        insideThing.GetComponentInChildren<SpriteRenderer>().enabled = true;
                     }
                 }
                 if (insideThing.GetComponent<HourGlass>() != null)
@@ -84,6 +86,18 @@ public class Cupboard : MonoBehaviour
         else
         {
             closeSound.Play();
+            if (!Vacant())
+            {
+                if (insideThing.GetComponent<Compass>() != null)
+                {
+                    insideThing.GetComponentInChildren<SpriteRenderer>().enabled = false;
+                }
+            }
         }
+    }
+
+    public bool Vacant()
+    {
+        return insideThing == null;
     }
 }

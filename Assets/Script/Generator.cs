@@ -509,7 +509,7 @@ public class Generator : MonoBehaviour
             }
             if(cupboard.Count % 10 != 0 && cupboard.Count % 10 != 9)
             {
-                if(Random.Range(0,3) == 0)
+                if (Random.Range(0,3) == 0)
                 {
                     deciding.isOpen = true;
                 }
