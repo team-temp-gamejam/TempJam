@@ -28,9 +28,11 @@ public class PlayerControl : MonoBehaviour
     public bool compassCollected;
     public bool canLeaveCupboard;
     private bool stepping;
-    private bool inCupboard;
+    public bool inCupboard;
 
     public GameObject soundVisual;
+    public GameObject lockSprite;
+    public GameObject compassSprite;
 
     public MapManager mapManager;
 
@@ -61,7 +63,7 @@ public class PlayerControl : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0, 0, orientation);
         GetMoveInput();
         Move();
-        if(inCupboard&& Input.GetButtonDown("p" + player + "Action"))
+        if (inCupboard && Input.GetButtonDown("p" + player + "Action"))
         {
             inCupboard = false;
             GetComponent<SpriteRenderer>().enabled = true;
@@ -167,6 +169,7 @@ public class PlayerControl : MonoBehaviour
         while (!footStep.isPlaying)
         {
             footStep.Play();
+            EventRelay.Notify(transform.position, 1);
         }
         yield return 0;
     }
@@ -178,13 +181,24 @@ public class PlayerControl : MonoBehaviour
             if (col.gameObject.tag == "Interactable")
             {
                 if (col.transform.parent.gameObject.tag == "Door") {
-                    if (!haveLock) return;
+                    bool Doorlock = col.transform.parent.gameObject.GetComponent<DoorScript>().isLock;
+                    
+                    if (Doorlock) {
+                        if (haveLock) return;
+                        else haveLock = true;
+                    } else {
+                        if (!haveLock) return;
+                        else haveLock = false;
+                    }
                     
                 }
                 col.gameObject.GetComponent<InteractItem>().Interact();
+                lockSprite.SetActive(haveLock);
+                compassSprite.SetActive(compassCollected);
+
             }
 
-            
+
 
         }
     }
@@ -198,8 +212,8 @@ public class PlayerControl : MonoBehaviour
     {
         Debug.Log("Hiding");
         inCupboard = true;
-        
-        
+
+
     }
 
     public void Captured()

@@ -8,7 +8,7 @@ public class DoorScript : MonoBehaviour
     public Vector2Int nextRoomPos;
     private GameObject nextRoom;
     private GameObject nextDoor;
-    private bool isLock;
+    public bool isLock;
     private Animator animator;
     public GameObject DoorBound;
     [SerializeField]
@@ -78,6 +78,7 @@ public class DoorScript : MonoBehaviour
     {
         animator.SetTrigger("PassDoor");
         doorOpen.Play();
+        EventRelay.Notify(transform.position, 2);
     }
 
     public void SetDoorLock(bool isLock)
