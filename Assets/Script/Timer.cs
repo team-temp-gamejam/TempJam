@@ -16,6 +16,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timePaused = false;
+
         //Time.timeScale = 1; 
     }
 
@@ -32,8 +33,8 @@ public class Timer : MonoBehaviour
         }
         if (timeLeft > 0 && GameObject.Find("MapManager").GetComponent<MapManager>().CheckWinCondition())
         {
-            timerText.enabled = false;
-            gameUI.winning.SetActive(true);
+            // timerText.enabled = false;
+            gameUI.winningScreen();
         }
     }
 
