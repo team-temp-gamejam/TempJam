@@ -1530,7 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ebdf418f44f643b4cdf06cfb9feb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimension: 10
+  dimension: 20
   roomPrefabs:
   - {fileID: 4282635941036839876, guid: c1eb34387302f4fc7a5c57a9f697ed0f, type: 3}
   - {fileID: 8283190028823629624, guid: 5753e2e25eda0429eac248321c4af691, type: 3}
@@ -2334,7 +2334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1612259607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,24 +2347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6447a8f9168968479e988527e8a9b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
-  roomPrefab:
-  - {fileID: 4282635941036839876, guid: c1eb34387302f4fc7a5c57a9f697ed0f, type: 3}
-  - {fileID: 8283190028823629624, guid: 5753e2e25eda0429eac248321c4af691, type: 3}
-  - {fileID: 1718468052704954056, guid: 374848a37ff1b4084a01479654ace562, type: 3}
-  - {fileID: 3989641736618669612, guid: 62b86b28498c0434bb81e6f32009d08e, type: 3}
-  - {fileID: 5167308528136823209, guid: 63a89f5cdb511407ea0d8c337de74ae3, type: 3}
-  - {fileID: 3989641736618669612, guid: 62b86b28498c0434bb81e6f32009d08e, type: 3}
-  - {fileID: 4508792310932616722, guid: ce2de226e08e64b199d8553e3689a0cd, type: 3}
-  - {fileID: 2516555061758286782, guid: 9ad0e383d119d4130986d5ab93b9d0a3, type: 3}
-  - {fileID: 4508792310932616722, guid: ce2de226e08e64b199d8553e3689a0cd, type: 3}
-  - {fileID: 3973529691718270169, guid: 5198690a0460f4d718afb9850d6f61bb, type: 3}
-  - {fileID: 6017454872873973618, guid: ad8900072b2a44d7ea69a259b310a7aa, type: 3}
-  - {fileID: 9123756442482439879, guid: 2ec503433e12545cb87af2f45d747106, type: 3}
-  - {fileID: 6116775098039326180, guid: 9a8ecc2239d2743eb9a3e0874af10f14, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  cupboards: []
+  doors: []
+  players: []
+  ghost: {fileID: 0}
 --- !u!4 &1612259608
 Transform:
   m_ObjectHideFlags: 0

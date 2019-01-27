@@ -449,6 +449,7 @@ public class Generator : MonoBehaviour
     void Start()
     {
         Generate();
+        GameObject.Find("MapManager").GetComponent<MapManager>().ScanMap();
     }
 
     // Update is called once per frame

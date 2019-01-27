@@ -5,23 +5,39 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
 
-    public int width, height;
-
-    public GameObject[] roomPrefab;
-
-    // private List<List<GameObject>> room;
-    public List<List<GameObject>> room;
+    public List<GameObject> cupboards;
+    public List<GameObject> doors;
+    public List<GameObject> players;
+    public GameObject ghost;
 
     void Start()
     {      
+
     }
 
-    public GameObject GetRoom(int row, int column) {
-        // return room[row][column];
-        return room[row][column];
-    }
-
-    public GameObject GetRoom(Vector2 index) {
-        return room[(int)index.y][(int)index.x];
+    public void ScanMap() {
+        Debug.Log("Scaning");
+        Transform map = GameObject.Find("Map").transform;
+        if (map != null) {
+            Debug.Log("map found");
+            foreach (Transform room in map) {
+                foreach (Transform item in room) {
+                    Debug.Log(item);
+                    if (item.gameObject.tag == "Player") {
+                        players.Add(item.gameObject);
+                    }
+                    if (item.gameObject.tag == "Cupboard") {
+                        cupboards.Add(item.gameObject);
+                    }
+                    if (item.gameObject.tag == "Door") {
+                        doors.Add(item.gameObject);
+                    }
+                    if (item.gameObject.tag == "Ghost") {
+                        ghost = item.gameObject;
+                    }
+                }
+            }
+        }
+        Debug.Log("Scan complete");
     }
 }
