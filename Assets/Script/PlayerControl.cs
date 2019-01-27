@@ -81,12 +81,7 @@ public class PlayerControl : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             playerCam.cullingMask |= 1 << LayerMask.NameToLayer("p" + player + "Hide");
         }
-        /*
-        else
-        {
-            StopCoroutine("footStepSound");
-        }
-        */
+        
     }
 
     //move
@@ -178,7 +173,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (col.gameObject.tag == "Interactable")
             {
-                if (col.parent.gameObject.tag == "Door") {
+                if (col.transform.parent.gameObject.tag == "Door") {
                     if (!haveLock) return;
                     
                 }
