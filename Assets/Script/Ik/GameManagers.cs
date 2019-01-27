@@ -14,7 +14,7 @@ public class GameManagers : MonoBehaviour
     {
         mapGenerator.Generate();
         map = mapGenerator.map;
-        ghostMovement.SetMap(map);
+        // ghostMovement.SetMap(map);
         // ghostMovement.SetDestination(ghostMovement.destination);
         /*ghostMovement.isChasing = true;
         ghostMovement.target = new Vector2(-2, -2);*/
