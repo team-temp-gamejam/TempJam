@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class GhostMovement : MonoBehaviour
 {
-    public Generator generator;
-
     private MapManager mapManager;
 
     public float speed;
@@ -28,9 +26,7 @@ public class GhostMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position = new Vector2Int();
         mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
-        SetMap(generator.map);
     }
 
     // Update is called once per frame
@@ -115,8 +111,9 @@ public class GhostMovement : MonoBehaviour
         return result;
     }
 
-    public void SetMap(List<List<Room>> map)
+    public void SetMap(List<List<Room>> map, Vector2Int position)
     {
+        this.position = position;
         this.map = map;
         room = map[position.x][position.y].interior;
 

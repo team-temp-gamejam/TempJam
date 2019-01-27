@@ -153,7 +153,7 @@ public class Generator : MonoBehaviour
     private List<Room> linkable = new List<Room>();
     public float linkRate;
     public MapDrawer drawer;
-    public GhostMovement ghost;
+    public GameObject ghost;
 
     public GameObject playerObject;
     public GameObject compass;
@@ -364,7 +364,7 @@ public class Generator : MonoBehaviour
         GenerateObject(ref map);
 
         GeneratePlayer();
-        // SpawnGhost();
+        GenerateGhost();
     }
 
     private void GenerateObject(ref List<List<Room>> map)
@@ -399,11 +399,11 @@ public class Generator : MonoBehaviour
     private void GeneratePlayer()
     {
         List<Vector2> location = this.GetPlayerSpawn();
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             GameObject player = Instantiate(playerObject, new Vector3(location[i].x * 7.1f, location[i].y * 7.1f, 5), Quaternion.identity);
             PlayerControl controller = player.GetComponent<PlayerControl>();
-            controller.SetPlayer(i+1);
+            controller.SetPlayer(i + 1);
             controller.SetCurrentRoom(location[i]);
 
             controller.orientation = Random.Range(0, 3) * 90;
@@ -414,9 +414,30 @@ public class Generator : MonoBehaviour
         }
     }
 
-    private void SpawnGhost()
+    private void GenerateGhost()
     {
-        ghost.SetMap(map);
+        Vector2Int spawnPosition = new Vector2Int();
+        List<Vector2> players = GetPlayerSpawn();
+
+        bool ok = false;
+        while (!ok)
+        {
+            ok = true;
+            spawnPosition = new Vector2Int(Random.Range(0, dimension), Random.Range(0, dimension));
+            foreach (Vector2 player in players)
+            {
+                Vector2Int playerPosition = new Vector2Int((int)player.x, (int)player.y);
+                if (playerPosition == spawnPosition)
+                {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+
+        GameObject ghostObject = Instantiate(ghost, new Vector3(spawnPosition.x * 7.1f, spawnPosition.y * 7.1f, 5), Quaternion.identity);
+        GameObject.Find("MapManager").GetComponent<MapManager>().ghost = ghostObject;
+        ghostObject.GetComponent<GhostMovement>().SetMap(map, spawnPosition);
     }
 
     private int CountLink(int dimension)
@@ -492,24 +513,24 @@ public class Generator : MonoBehaviour
     private void GenerateItem()
     {
         List<Cupboard> cupboard = new List<Cupboard>();
-        foreach(GameObject obj in GameObject.Find("MapManager").GetComponent<MapManager>().cupboards)
+        foreach (GameObject obj in GameObject.Find("MapManager").GetComponent<MapManager>().cupboards)
         {
             cupboard.Add(obj.GetComponent<Cupboard>());
         }
-        while(cupboard.Count > 0)
+        while (cupboard.Count > 0)
         {
             Cupboard deciding = cupboard[Random.Range(0, cupboard.Count)];
-            if(cupboard.Count % 10 == 0)
+            if (cupboard.Count % 10 == 0)
             {
-                deciding.insideThing = Instantiate(compass,deciding.gameObject.transform.position + new Vector3(0,0,-1),Quaternion.identity);
+                deciding.insideThing = Instantiate(compass, deciding.gameObject.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
             }
-            if(cupboard.Count % 10 == 9)
+            if (cupboard.Count % 10 == 9)
             {
                 deciding.insideThing = Instantiate(hourglass, deciding.gameObject.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
             }
-            if(cupboard.Count % 10 != 0 && cupboard.Count % 10 != 9)
+            if (cupboard.Count % 10 != 0 && cupboard.Count % 10 != 9)
             {
-                if (Random.Range(0,3) == 0)
+                if (Random.Range(0, 3) == 0)
                 {
                     deciding.isOpen = true;
                 }

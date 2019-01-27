@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
     public float timeLeft; 
     public Text timerText;
     public bool timePaused;
+    [SerializeField]
+    private InGameUIManager gameUI;
 
     void Start()
     {
@@ -23,11 +25,16 @@ public class Timer : MonoBehaviour
         TickTime();
         //Debug.Log(timePaused);
 
-        if (timeLeft == 0)
+        if ((int)timeLeft == 0)
         {
             //lose the game
+            gameUI.losingScreen();
         }
+        //if(timeLeft>0 && win condition)
+        //{
+        //gameUI.winning.SetActive(true);
 
+        //}
     }
 
 

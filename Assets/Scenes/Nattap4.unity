@@ -439,6 +439,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fc3a5a72fc794540a68adda51d49eb4, type: 3}
+--- !u!1 &357581029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 357581030}
+  - component: {fileID: 357581031}
+  m_Layer: 0
+  m_Name: Hourglass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &357581030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357581029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 62.008327, y: 20.768318, z: 0.671875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &357581031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357581029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d040311e12a9d804e9cb171fffe8eccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childrenTime: {fileID: 0}
+  ghost: {fileID: 0}
+  timePlus: 0
+  stopTime: {fileID: 0}
 --- !u!4 &479838222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3352544093025193775, guid: 5fc3a5a72fc794540a68adda51d49eb4,
@@ -1121,8 +1168,10 @@ MonoBehaviour:
   pickUp: {fileID: 0}
   wink: {fileID: 0}
   playerCam: {fileID: 0}
+  haveLock: 0
   compassCollected: 0
   canLeaveCupboard: 0
+  soundVisual: {fileID: 0}
   orientation: 0
 --- !u!61 &773708724
 BoxCollider2D:
@@ -1201,7 +1250,7 @@ GameObject:
   - component: {fileID: 834517799}
   - component: {fileID: 834517800}
   - component: {fileID: 834517801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LightMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1521,7 +1570,10 @@ MonoBehaviour:
   - {fileID: 5151822801948814705, guid: 99a00aeabe5914370b0005ac81d12826, type: 3}
   linkRate: 0.5
   drawer: {fileID: 0}
+  ghost: {fileID: 0}
   playerObject: {fileID: 773708720}
+  compass: {fileID: 8330228920421386020, guid: 232c8460cfbcf5b41b89ad0227633289, type: 3}
+  hourglass: {fileID: 357581029}
   cameras:
   - {fileID: 165922358}
   - {fileID: 949326794}
@@ -1905,7 +1957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1612259607
 MonoBehaviour:
   m_ObjectHideFlags: 0

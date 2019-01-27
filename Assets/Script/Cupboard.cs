@@ -56,19 +56,21 @@ public class Cupboard : MonoBehaviour
             openSound.Play();
             if (!Vacant())
             {
-                Debug.Log("Something");
+                //Debug.Log("Something");
                 if(insideThing.GetComponent<Compass>() != null)
                 {
-                    Debug.Log("Compass Found");
+                    //Debug.Log("Compass Found");
                     if (!opener.compassCollected)
                     {
                         opener.compassCollected = true;
                         Destroy(insideThing);
-                        Debug.Log("Compass Lost");
+                        //Debug.Log("Compass Lost");
                     }
                     else
                     {
                         // Alert
+
+                        insideThing.GetComponentInChildren<SpriteRenderer>().enabled = true;
                     }
                 }
                 if (insideThing.GetComponent<HourGlass>() != null)
@@ -84,6 +86,13 @@ public class Cupboard : MonoBehaviour
         else
         {
             closeSound.Play();
+            if (!Vacant())
+            {
+                if (insideThing.GetComponent<Compass>() != null)
+                {
+                    insideThing.GetComponentInChildren<SpriteRenderer>().enabled = false;
+                }
+            }
         }
     }
 

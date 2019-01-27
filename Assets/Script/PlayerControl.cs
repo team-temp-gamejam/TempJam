@@ -82,12 +82,7 @@ public class PlayerControl : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             playerCam.cullingMask |= 1 << LayerMask.NameToLayer("p" + player + "Hide");
         }
-        /*
-        else
-        {
-            StopCoroutine("footStepSound");
-        }
-        */
+        
     }
 
     //move
