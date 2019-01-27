@@ -15,10 +15,10 @@ public class CupboardScript : InteractItem
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         interactingPlayer = collision.gameObject.GetComponent<PlayerControl>();
     }
