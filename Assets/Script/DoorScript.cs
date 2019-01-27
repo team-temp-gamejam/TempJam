@@ -8,7 +8,7 @@ public class DoorScript : MonoBehaviour
     public Vector2Int nextRoomPos;
     private GameObject nextRoom;
     private GameObject nextDoor;
-    private bool isLock;
+    public bool isLock;
     private Animator animator;
     public GameObject DoorBound;
     [SerializeField]
