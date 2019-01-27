@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Room
 {
@@ -38,7 +39,7 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        type = Random.Range(16, 20);
+                        type = UnityEngine.Random.Range(16, 20);
                     }
                     else
                     {
@@ -116,7 +117,7 @@ public class Room
                 {
                     if (rightActive)
                     {
-                        type = Random.Range(0, 2) * 2 + 8;
+                        type = UnityEngine.Random.Range(0, 2) * 2 + 8;
                     }
                     else
                     {
@@ -155,6 +156,8 @@ public class Generator : MonoBehaviour
     public GhostMovement ghost;
 
     public GameObject playerObject;
+    public GameObject compass;
+    public GameObject hourglass;
 
     public Camera[] cameras = new Camera[4];
 
@@ -405,8 +408,9 @@ public class Generator : MonoBehaviour
 
             controller.orientation = Random.Range(0, 3) * 90;
 
+            GameObject.Find("MapManager").GetComponent<MapManager>().players.Add(controller.gameObject);
+
             cameras[i].GetComponent<CameraFollowScript>().player = player;
-            // Rotate things
         }
     }
 
@@ -482,6 +486,36 @@ public class Generator : MonoBehaviour
     {
         Generate();
         GameObject.Find("MapManager").GetComponent<MapManager>().ScanMap();
+        GenerateItem();
+    }
+
+    private void GenerateItem()
+    {
+        List<Cupboard> cupboard = new List<Cupboard>();
+        foreach(GameObject obj in GameObject.Find("MapManager").GetComponent<MapManager>().cupboards)
+        {
+            cupboard.Add(obj.GetComponent<Cupboard>());
+        }
+        while(cupboard.Count > 0)
+        {
+            Cupboard deciding = cupboard[Random.Range(0, cupboard.Count)];
+            if(cupboard.Count % 10 == 0)
+            {
+                deciding.insideThing = Instantiate(compass,deciding.gameObject.transform.position + new Vector3(0,0,-1),Quaternion.identity);
+            }
+            if(cupboard.Count % 10 == 9)
+            {
+                deciding.insideThing = Instantiate(hourglass, deciding.gameObject.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+            }
+            if(cupboard.Count % 10 != 0 && cupboard.Count % 10 != 9)
+            {
+                if(Random.Range(0,3) == 0)
+                {
+                    deciding.isOpen = true;
+                }
+            }
+            cupboard.Remove(deciding);
+        }
     }
 
     // Update is called once per frame
