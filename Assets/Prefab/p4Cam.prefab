@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8610169408864567291}
   - component: {fileID: 6091127837995454467}
   - component: {fileID: 390769248395824318}
-  m_Layer: 19
+  m_Layer: 22
   m_Name: compass2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1998172487605463233}
   - component: {fileID: 9042339344375365217}
-  m_Layer: 19
+  m_Layer: 22
   m_Name: darkness (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4684329017334872975}
   - component: {fileID: 4684329017334872968}
   - component: {fileID: 4684329017334872973}
-  m_Layer: 19
+  m_Layer: 22
   m_Name: p4Cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 589623
+    m_Bits: 4226871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -283,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8730441786492846334}
   - component: {fileID: 6252217359781039500}
-  m_Layer: 19
+  m_Layer: 22
   m_Name: key1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

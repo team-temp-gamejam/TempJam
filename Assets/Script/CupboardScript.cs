@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CupboardScript : InteractItem
 {
+    [SerializeField]
     private PlayerControl interactingPlayer;
 
     // Start is called before the first frame update
