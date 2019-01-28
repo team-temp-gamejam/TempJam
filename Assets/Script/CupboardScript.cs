@@ -19,10 +19,18 @@ public class CupboardScript : InteractItem
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") {
             interactingPlayer = collision.gameObject.GetComponent<PlayerControl>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player") {
+            if(collision.gameObject.GetComponent<PlayerControl>() == interactingPlayer)
+                interactingPlayer = null;
         }
     }
 
@@ -31,5 +39,9 @@ public class CupboardScript : InteractItem
     {
         Cupboard parent = transform.parent.GetComponent<Cupboard>();
         parent.SetOpen(!parent.isOpen, interactingPlayer);
+        // Vector2 backstep = (Vector2)transform.parent.position - (Vector2)interactingPlayer.gameObject.transform.position;
+        // backstep = backstep.normalized/10;
+        // Vector3 playerPosition = interactingPlayer.gameObject.transform.position;
+        // interactingPlayer.gameObject.transform.position = new Vector3(playerPosition.x - backstep.x, playerPosition.y - backstep.y, playerPosition.z);
     }
 }

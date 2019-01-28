@@ -12,6 +12,8 @@ public class Cupboard : MonoBehaviour
     public Vector2 currentRoom;
     public AudioSource openSound, closeSound;
 
+    private float colliderSizeY;
+
     void Start()
     {
         sprite = this.GetComponent<SpriteRenderer>();
@@ -20,32 +22,33 @@ public class Cupboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOpen)
-        {
-            sprite.sprite = open;
-        }
-        else
-        {
-            sprite.sprite = closed;
-        }
+        // if (isOpen)
+        // {
+        //     sprite.sprite = open;
+        // }
+        // else
+        // {
+        //     sprite.sprite = closed;
+        // }
 
-        if (isOpen && Vacant())
-        {
-            transform.GetComponent<BoxCollider2D>().isTrigger = true;
-        }
-        else
-        {
-            transform.GetComponent<BoxCollider2D>().isTrigger = false;
-        }
+        // if (isOpen && Vacant())
+        // {
+        //     transform.GetComponent<BoxCollider2D>().isTrigger = true;
+        // }
+        // else
+        // {
+        //     transform.GetComponent<BoxCollider2D>().isTrigger = false;
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player") {
-            col.gameObject.GetComponent<PlayerControl>().transform.position = transform.position;
-            col.gameObject.GetComponent<PlayerControl>().hiding();
-            this.isOpen = false;
-            transform.GetComponent<BoxCollider2D>().isTrigger = false;
+            col.gameObject.transform.position = transform.position;
+            col.gameObject.GetComponent<PlayerControl>().hiding(gameObject);
+            // this.isOpen = false;
+            // transform.GetComponent<BoxCollider2D>().isTrigger = false;
+            SetOpen(false, null);
         }
     }
 
@@ -55,6 +58,7 @@ public class Cupboard : MonoBehaviour
         if (isOpen)
         {
             openSound.Play();
+            sprite.sprite = open;
             EventRelay.Notify(transform.position, 3);
             if (!Vacant())
             {
@@ -66,6 +70,7 @@ public class Cupboard : MonoBehaviour
                     {
                         opener.compassCollected = true;
                         Destroy(insideThing);
+                        GetComponent<BoxCollider2D>().isTrigger = true;
                         //Debug.Log("Compass Lost");
                     }
                     else
@@ -83,11 +88,22 @@ public class Cupboard : MonoBehaviour
                 {
 
                 }
+                
+            // }
+            // if (!Vacant()) {
+            //     transform.GetComponent<BoxCollider2D>().isTrigger = false;
+            } else {
+                transform.GetComponent<BoxCollider2D>().isTrigger = true;
             }
+            // colliderSizeY = GetComponent<BoxCollider2D>().size.y;
+            GetComponent<BoxCollider2D>().size -= (new Vector2(0, 0.2f));
+
         }
         else
         {
             closeSound.Play();
+            sprite.sprite = closed;
+            transform.GetComponent<BoxCollider2D>().isTrigger = false;
             if (!Vacant())
             {
                 if (insideThing.GetComponent<Compass>() != null)
@@ -95,6 +111,7 @@ public class Cupboard : MonoBehaviour
                     insideThing.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 }
             }
+            GetComponent<BoxCollider2D>().size +=  (new Vector2(0, 0.2f));
         }
     }
 

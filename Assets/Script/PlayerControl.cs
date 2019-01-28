@@ -35,6 +35,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject compassSprite;
 
     public GameObject interactingObject;
+    private GameObject cupboardHiding;
 
     // public MapManager mapManager;
 
@@ -66,38 +67,54 @@ public class PlayerControl : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0, 0, orientation);
         GetMoveInput();
         Move();
+
         if (inCupboard && Input.GetButtonDown("p" + player + "Action"))
         {
             inCupboard = false;
             GetComponent<SpriteRenderer>().enabled = true;
+            for (int i = 1; i < 5; i++)
+            {
+                playerCam.cullingMask |= (1 << LayerMask.NameToLayer("p" + i + "Light"));
+            }
+            playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("p" + player + "Hide"));
+            cupboardHiding.GetComponent<Cupboard>().SetOpen(true, this);
+            transform.position = cupboardHiding.transform.GetChild(0).position;
+
+            if (anim.GetBool("FaceUp")) {
+                anim.SetBool("FaceUp", false);
+                anim.SetBool("FaceDown", true);
+            } else 
+            if (anim.GetBool("FaceDown")) {
+                anim.SetBool("FaceDown", false);
+                anim.SetBool("FaceUp", true);
+            } else 
+            if (anim.GetBool("FaceRight")) {
+                anim.SetBool("FaceRight", false);
+                anim.SetBool("FaceLeft", true);
+            } else 
+            if (anim.GetBool("FaceLeft")) {
+                anim.SetBool("FaceLeft", false);
+                anim.SetBool("FaceRight", true);
+            }
+
         }
+
         if (stepping)
         {
-            // StartCoroutine("footStepSound");
             PlayFootStepSound();
-        }
-        else {
-            // StopAllCoroutines();
+        } else {
             footStep.Stop();
         }
+
         if (Input.GetButtonDown("p" + player + "Rotate"))
         {
             Rotate();
         }
+
         stepping = false;
-        if (inCupboard)
-        {
-            for (int i = 1; i < 5; i++)
-            {
-                playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("p" + i + "Light"));
-            }
-            GetComponent<SpriteRenderer>().enabled = false;
-            playerCam.cullingMask |= 1 << LayerMask.NameToLayer("p" + player + "Hide");
-        }
         
         if (Input.GetButtonDown("p" + player + "Action") && interactingObject != null)
         {
-            Debug.Log("Player action");
             if (interactingObject.gameObject.tag == "Interactable")
             {
                 if (interactingObject.transform.parent.gameObject.tag == "Door") {
@@ -233,11 +250,17 @@ public class PlayerControl : MonoBehaviour
         playerCam = cam;
     }
 
-    public void hiding()
+    public void hiding(GameObject cupboard)
     {
         Debug.Log("Hiding");
         inCupboard = true;
-
+        for (int i = 1; i < 5; i++)
+        {
+            playerCam.cullingMask &= ~(1 << LayerMask.NameToLayer("p" + i + "Light"));
+        }
+        GetComponent<SpriteRenderer>().enabled = false;
+        playerCam.cullingMask |= 1 << LayerMask.NameToLayer("p" + player + "Hide");
+        cupboardHiding = cupboard;
 
     }
 
