@@ -67,17 +67,22 @@ public class DoorScript : MonoBehaviour
             col.gameObject.transform.position = nextDoor.GetComponent<DoorScript>().spawnPoint.transform.position;
             DoorFlip();
             nextDoor.GetComponent<DoorScript>().DoorFlip();
+            doorOpen.Play();
         }
         if (col.gameObject.tag == "Ghost")
         {
             col.gameObject.GetComponent<GhostMovement>().CrossRoom(nextDoor.GetComponent<DoorScript>().spawnPoint.transform.position);
+            DoorFlip();
+            nextDoor.GetComponent<DoorScript>().DoorFlip();
+            doorOpen.volume = 0.5f;
+            
+            doorOpen.Play();
         }
     }
 
     public void DoorFlip()
     {
         animator.SetTrigger("PassDoor");
-        doorOpen.Play();
         EventRelay.Notify(transform.position, 2);
     }
 

@@ -196,7 +196,6 @@ MonoBehaviour:
   sprite: {fileID: 0}
   open: {fileID: 21300000, guid: 5e2fd673c1c53a8449e7b8631dbd9852, type: 3}
   closed: {fileID: 21300000, guid: de562ae5860db4625a1dbf6f9456ea6c, type: 3}
-  vacant: 0
   insideThing: {fileID: 0}
   currentRoom: {x: 0, y: 0}
   openSound: {fileID: 3340090391736049391}
@@ -243,7 +242,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243970755399546022, guid: a2b4545ad3a04ca4ab7947e077c68793,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: da2ee49be3efd4d40b3a90045853ff37, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 24d335d0bac332847a56d219a1cd7175, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -371,7 +370,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243970755399546022, guid: a2b4545ad3a04ca4ab7947e077c68793,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 72efad29fae746d4ead4c8164fa082ce, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cf61518262b34774aa22cb440da7f4d9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

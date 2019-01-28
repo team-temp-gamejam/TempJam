@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject lockSprite;
     public GameObject compassSprite;
 
-    public MapManager mapManager;
+    // public MapManager mapManager;
 
     public int orientation = 0;
     // Start is called before the first frame update
@@ -71,9 +71,13 @@ public class PlayerControl : MonoBehaviour
         }
         if (stepping)
         {
-            StartCoroutine("footStepSound");
+            // StartCoroutine("footStepSound");
+            PlayFootStepSound();
         }
-        else StopAllCoroutines();
+        else {
+            // StopAllCoroutines();
+            footStep.Stop();
+        }
         if (Input.GetButtonDown("p" + player + "Rotate"))
         {
             Rotate();
@@ -156,50 +160,6 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("FaceLeft", false);
                 anim.SetBool("FaceRight", false);
             }
-            // if (Input.GetAxisRaw("p" + player + "Up") > 0.1)
-            // {
-            //     direction += Vector2.up;
-            //     stepping = true;
-            //     anim.SetBool("isWalk", true);
-            //     anim.SetBool("FaceUp", true);
-
-            //     anim.SetBool("FaceDown", false);
-            //     anim.SetBool("FaceLeft", false);
-            //     anim.SetBool("FaceRight", false);
-            // }
-            // if (Input.GetAxisRaw("p" + player + "Right")> 0.1)
-            // {
-            //     direction += Vector2.right;
-            //     stepping = true;
-            //     anim.SetBool("isWalk", true);
-            //     anim.SetBool("FaceRight", true);
-
-            //     anim.SetBool("FaceUp", false);
-            //     anim.SetBool("FaceDown", false);
-            //     anim.SetBool("FaceLeft", false);
-            // }
-            // if (Input.GetAxisRaw("p" + player + "Left")> 0.1)
-            // {
-            //     direction += Vector2.left;
-            //     stepping = true;
-            //     anim.SetBool("isWalk", true);
-            //     anim.SetBool("FaceLeft", true);
-
-            //     anim.SetBool("FaceUp", false);
-            //     anim.SetBool("FaceDown", false);
-            //     anim.SetBool("FaceRight", false);
-            // }
-            // if (Input.GetAxisRaw("p" + player + "Down")> 0.1)
-            // {
-            //     direction += Vector2.down;
-            //     stepping = true;
-            //     anim.SetBool("isWalk", true);
-            //     anim.SetBool("FaceDown", true);
-
-            //     anim.SetBool("FaceUp", false);
-            //     anim.SetBool("FaceLeft", false);
-            //     anim.SetBool("FaceRight", false);
-            // }
         }
     }
 
@@ -209,14 +169,23 @@ public class PlayerControl : MonoBehaviour
         //orientation = (orientation + 90) % 360;
     }
 
-    IEnumerator footStepSound()
+    // IEnumerator footStepSound()
+    // {
+    //     while (!footStep.isPlaying)
+    //     {
+    //         footStep.Play();
+    //         EventRelay.Notify(transform.position, 1);
+    //     }
+    //     yield return 0;
+    // }
+
+    private void PlayFootStepSound() 
     {
-        while (!footStep.isPlaying)
+        if (!footStep.isPlaying)
         {
             footStep.Play();
             EventRelay.Notify(transform.position, 1);
         }
-        yield return 0;
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -251,6 +220,10 @@ public class PlayerControl : MonoBehaviour
     public void SetPlayer(int player)
     {
         this.player = player;
+    }
+
+    public void SetCam(Camera cam) {
+        playerCam = cam;
     }
 
     public void hiding()

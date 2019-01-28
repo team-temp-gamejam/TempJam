@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class GhostMovement : MonoBehaviour
 {
-    private MapManager mapManager;
+    // private MapManager mapManager;
 
     public float speed;
     public float attackRange;
@@ -26,7 +26,7 @@ public class GhostMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+        // mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
     }
 
     // Update is called once per frame
@@ -94,7 +94,7 @@ public class GhostMovement : MonoBehaviour
     {
         GameObject result = null;
         float distance = 100;
-        foreach (GameObject target in mapManager.players)
+        foreach (GameObject target in MapManager.instance.players)
         {
             Vector2 targetPositionFloat = target.GetComponent<PlayerControl>().GetCurrentRoom();
             Vector2Int targetPosition = new Vector2Int((int)targetPositionFloat.x, (int)targetPositionFloat.y);
@@ -133,16 +133,17 @@ public class GhostMovement : MonoBehaviour
 
     public void SetNavAgent()
     {
-        if (nav != null)
-        {
-            Destroy(nav.gameObject);
-        }
+        Transform oldNav = nav;
         nav = Instantiate(room.GetComponent<Navigator>().navigator).transform;
         NavMeshSurface navMeshSurface = nav.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
         agent = nav.GetComponentInChildren<NavMeshAgent>();
         agent.speed = speed;
         agent.Warp(RoomToNav(transform.position));
+        if (oldNav != null)
+        {
+            Destroy(oldNav.gameObject);
+        }
     }
 
     private Vector3 RoomToNav(Vector3 pos)

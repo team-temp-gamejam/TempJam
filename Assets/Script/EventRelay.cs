@@ -10,11 +10,12 @@ public class EventRelay : MonoBehaviour
     void Start()
     {
         // players = GetComponent<MapManager>().players;
-        ghost = GetComponent<MapManager>().ghost;
+        // ghost = GetComponent<MapManager>().ghost;
+        ghost = MapManager.instance.ghost;
     }
 
     public static void Notify(Vector3 pos, int type) {
-        List<GameObject> players = GameObject.Find("MapManager").GetComponent<MapManager>().players;
+        List<GameObject> players = MapManager.instance.players;
         Vector2 pos2D = new Vector2(pos.x, pos.y);
         foreach (GameObject player in players) {
             player.GetComponent<PlayerControl>().soundVisual.GetComponent<WaveVisual>().Notify(pos2D, type);

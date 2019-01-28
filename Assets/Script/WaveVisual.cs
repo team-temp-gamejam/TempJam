@@ -32,7 +32,8 @@ public class WaveVisual : MonoBehaviour
             } else 
             sound = stepWave;
 
-            GameObject wave = Instantiate(sound, transform.position, Quaternion.Euler(0, 0, angle));
+            // GameObject wave = Instantiate(sound, transform.position, Quaternion.Euler(0, 0, angle));
+            GameObject wave = Instantiate(sound, transform.position, Quaternion.Euler(0, 0, angle), transform.parent);
             Color current = wave.GetComponent<SpriteRenderer>().color;
             wave.GetComponent<SpriteRenderer>().color = new Color(current.r, current.g, current.b, 1-(distance/13));
         }

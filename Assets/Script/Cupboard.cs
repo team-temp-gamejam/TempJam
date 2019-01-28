@@ -39,13 +39,14 @@ public class Cupboard : MonoBehaviour
         }
     }
 
-    private void OnColliderEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-
-        collision.gameObject.GetComponent<PlayerControl>().transform.position = transform.position;
-        collision.gameObject.GetComponent<PlayerControl>().hiding();
-        this.isOpen = false;
-        transform.GetComponent<BoxCollider2D>().isTrigger = false;
+        if (col.gameObject.tag == "Player") {
+            col.gameObject.GetComponent<PlayerControl>().transform.position = transform.position;
+            col.gameObject.GetComponent<PlayerControl>().hiding();
+            this.isOpen = false;
+            transform.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
     }
 
     public void SetOpen(bool isOpen, PlayerControl opener)

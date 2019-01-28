@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class dummySound : MonoBehaviour
 {
-    GameObject mapManager;
 
     public float delay;
     float counter;
@@ -12,7 +11,6 @@ public class dummySound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mapManager = GameObject.Find("MapManager");
     }
 
     // Update is called once per frame
@@ -22,7 +20,6 @@ public class dummySound : MonoBehaviour
         if (counter > delay) {
             Debug.Log("broadcast sound");
             counter = 0;
-            // mapManager.GetComponent<EventRelay>().Notify(transform.position, 1);
             EventRelay.Notify(transform.position, 1);
         }
     }

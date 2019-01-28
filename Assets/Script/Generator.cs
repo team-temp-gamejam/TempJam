@@ -408,7 +408,8 @@ public class Generator : MonoBehaviour
 
             controller.orientation = Random.Range(0, 3) * 90;
 
-            GameObject.Find("MapManager").GetComponent<MapManager>().players.Add(controller.gameObject);
+            // GameObject.Find("MapManager").GetComponent<MapManager>().players.Add(controller.gameObject);
+            MapManager.instance.players.Add(controller.gameObject);
 
             cameras[i].GetComponent<CameraFollowScript>().player = player;
         }
@@ -436,7 +437,8 @@ public class Generator : MonoBehaviour
         }
 
         GameObject ghostObject = Instantiate(ghost, new Vector3(spawnPosition.x * 7.1f, spawnPosition.y * 7.1f, 5), Quaternion.identity);
-        GameObject.Find("MapManager").GetComponent<MapManager>().ghost = ghostObject;
+        // GameObject.Find("MapManager").GetComponent<MapManager>().ghost = ghostObject;
+        MapManager.instance.ghost = ghostObject;
         ghostObject.GetComponent<GhostMovement>().SetMap(map, spawnPosition);
     }
 
@@ -506,14 +508,16 @@ public class Generator : MonoBehaviour
     void Start()
     {
         Generate();
-        GameObject.Find("MapManager").GetComponent<MapManager>().ScanMap();
+        // GameObject.Find("MapManager").GetComponent<MapManager>().ScanMap();
+        MapManager.instance.ScanMap();
         GenerateItem();
     }
 
     private void GenerateItem()
     {
         List<Cupboard> cupboard = new List<Cupboard>();
-        foreach (GameObject obj in GameObject.Find("MapManager").GetComponent<MapManager>().cupboards)
+        // foreach (GameObject obj in GameObject.Find("MapManager").GetComponent<MapManager>().cupboards)
+        foreach (GameObject obj in MapManager.instance.cupboards)
         {
             cupboard.Add(obj.GetComponent<Cupboard>());
         }

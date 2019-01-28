@@ -31,9 +31,11 @@ public class CameraFollowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<PlayerControl>().compassSprite == null) {
-            player.GetComponent<PlayerControl>().compassSprite = transform.GetChild(2).gameObject;
-            player.GetComponent<PlayerControl>().lockSprite = transform.GetChild(1).gameObject;
+        PlayerControl ps = player.GetComponent<PlayerControl>();
+        if (ps.compassSprite == null) {
+            ps.compassSprite = transform.GetChild(2).gameObject;
+            ps.lockSprite = transform.GetChild(1).gameObject;
+            ps.SetCam(GetComponent<Camera>());
         }
         updateRoom();
         cameraOffset = new Vector2(player.transform.position.x - RoomPosition.x, player.transform.position.y - RoomPosition.y);

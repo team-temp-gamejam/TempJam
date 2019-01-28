@@ -20,7 +20,9 @@ public class CupboardScript : InteractItem
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        interactingPlayer = collision.gameObject.GetComponent<PlayerControl>();
+        if (collision.gameObject.tag == "Player") {
+            interactingPlayer = collision.gameObject.GetComponent<PlayerControl>();
+        }
     }
 
 

@@ -31,7 +31,8 @@ public class Timer : MonoBehaviour
             //lose the game
             gameUI.losingScreen();
         }
-        if (timeLeft > 0 && GameObject.Find("MapManager").GetComponent<MapManager>().CheckWinCondition())
+        // if (timeLeft > 0 && GameObject.Find("MapManager").GetComponent<MapManager>().CheckWinCondition())
+        if (timeLeft > 0 && MapManager.instance.CheckWinCondition())
         {
             // timerText.enabled = false;
             gameUI.winningScreen();

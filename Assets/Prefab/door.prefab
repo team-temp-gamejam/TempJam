@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 3352544094646048740}
   nextRoomPos: {x: 0, y: 0}
+  isLock: 0
   DoorBound: {fileID: 3352544094417364244}
   doorClose: {fileID: 2605541449226970937}
   doorLock: {fileID: 472706764254382514}

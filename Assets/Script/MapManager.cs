@@ -5,14 +5,22 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
 
+    public static MapManager instance;
+
     public List<GameObject> cupboards;
     public List<GameObject> doors;
     public List<GameObject> players;
     public GameObject ghost;
 
-    void Start()
+    void Awake()
     {
-
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy (gameObject);
+            return;
+        }
+        
     }
 
     public void ScanMap()
