@@ -156,6 +156,50 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("FaceLeft", false);
                 anim.SetBool("FaceRight", false);
             }
+            // if (Input.GetAxisRaw("p" + player + "Up") > 0.1)
+            // {
+            //     direction += Vector2.up;
+            //     stepping = true;
+            //     anim.SetBool("isWalk", true);
+            //     anim.SetBool("FaceUp", true);
+
+            //     anim.SetBool("FaceDown", false);
+            //     anim.SetBool("FaceLeft", false);
+            //     anim.SetBool("FaceRight", false);
+            // }
+            // if (Input.GetAxisRaw("p" + player + "Right")> 0.1)
+            // {
+            //     direction += Vector2.right;
+            //     stepping = true;
+            //     anim.SetBool("isWalk", true);
+            //     anim.SetBool("FaceRight", true);
+
+            //     anim.SetBool("FaceUp", false);
+            //     anim.SetBool("FaceDown", false);
+            //     anim.SetBool("FaceLeft", false);
+            // }
+            // if (Input.GetAxisRaw("p" + player + "Left")> 0.1)
+            // {
+            //     direction += Vector2.left;
+            //     stepping = true;
+            //     anim.SetBool("isWalk", true);
+            //     anim.SetBool("FaceLeft", true);
+
+            //     anim.SetBool("FaceUp", false);
+            //     anim.SetBool("FaceDown", false);
+            //     anim.SetBool("FaceRight", false);
+            // }
+            // if (Input.GetAxisRaw("p" + player + "Down")> 0.1)
+            // {
+            //     direction += Vector2.down;
+            //     stepping = true;
+            //     anim.SetBool("isWalk", true);
+            //     anim.SetBool("FaceDown", true);
+
+            //     anim.SetBool("FaceUp", false);
+            //     anim.SetBool("FaceLeft", false);
+            //     anim.SetBool("FaceRight", false);
+            // }
         }
     }
 
