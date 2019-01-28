@@ -34,6 +34,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject lockSprite;
     public GameObject compassSprite;
 
+    public GameObject interactingObject;
+
     // public MapManager mapManager;
 
     public int orientation = 0;
@@ -93,6 +95,28 @@ public class PlayerControl : MonoBehaviour
             playerCam.cullingMask |= 1 << LayerMask.NameToLayer("p" + player + "Hide");
         }
         
+        if (Input.GetButtonDown("p" + player + "Action") && interactingObject != null)
+        {
+            Debug.Log("Player action");
+            if (interactingObject.gameObject.tag == "Interactable")
+            {
+                if (interactingObject.transform.parent.gameObject.tag == "Door") {
+                    bool Doorlock = interactingObject.transform.parent.gameObject.GetComponent<DoorScript>().isLock;
+                    
+                    if (Doorlock) {
+                        if (haveLock) return;
+                        else haveLock = true;
+                    } else {
+                        if (!haveLock) return;
+                        else haveLock = false;
+                    }
+                    
+                }
+                interactingObject.gameObject.GetComponent<InteractItem>().Interact();
+                lockSprite.SetActive(haveLock);
+                compassSprite.SetActive(compassCollected);
+            }
+        }
     }
 
     //move
@@ -188,32 +212,15 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (Input.GetButtonDown("p" + player + "Action"))
-        {
-            if (col.gameObject.tag == "Interactable")
-            {
-                if (col.transform.parent.gameObject.tag == "Door") {
-                    bool Doorlock = col.transform.parent.gameObject.GetComponent<DoorScript>().isLock;
-                    
-                    if (Doorlock) {
-                        if (haveLock) return;
-                        else haveLock = true;
-                    } else {
-                        if (!haveLock) return;
-                        else haveLock = false;
-                    }
-                    
-                }
-                col.gameObject.GetComponent<InteractItem>().Interact();
-                lockSprite.SetActive(haveLock);
-                compassSprite.SetActive(compassCollected);
+        interactingObject = col.gameObject;
+    }
 
-            }
-
-
-
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject == interactingObject) {
+            interactingObject = null;
         }
     }
 
