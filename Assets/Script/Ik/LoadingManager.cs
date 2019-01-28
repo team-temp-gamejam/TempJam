@@ -24,7 +24,7 @@ public class LoadingManager : MonoBehaviour
         loadingText.text = "Loading";
         progressBar.gameObject.SetActive(false);
 
-        completeText.text = "Press Numlock to Start";
+        completeText.text = "Press Spacebar to Start";
         completeText.gameObject.SetActive(false);
 
         ready = false;
@@ -39,7 +39,7 @@ public class LoadingManager : MonoBehaviour
         if (loaded)
         {
             completeText.gameObject.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Numlock))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 ready = true;
             }
