@@ -40,7 +40,7 @@ public class CameraFollowScript : MonoBehaviour
         updateRoom();
         cameraOffset = new Vector2(player.transform.position.x - RoomPosition.x, player.transform.position.y - RoomPosition.y);
         transform.position = Vector2.Lerp(transform.position, RoomPosition + (cameraOffset * AxisMultiply), camSpeed);
-        if(((Vector2)transform.position - (RoomPosition + (cameraOffset * AxisMultiply))).magnitude < 0.01)
+        if (this.gameObject.GetComponent<Camera>().cullingMask == 0 && ((Vector2)transform.position - (RoomPosition + (cameraOffset * AxisMultiply))).magnitude < 0.01)
         {
             this.gameObject.GetComponent<Camera>().cullingMask = mask;
         }

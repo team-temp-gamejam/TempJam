@@ -490,11 +490,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
         type: 3}
-      propertyPath: playerObject.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
       propertyPath: cameras.Array.data[0]
       value: 
       objectReference: {fileID: 292185673}
@@ -513,53 +508,6 @@ PrefabInstance:
       propertyPath: cameras.Array.data[3]
       value: 
       objectReference: {fileID: 790212729}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: ghost
-      value: 
-      objectReference: {fileID: 5135990630818759213, guid: 3aee6b36c21f28d408dfeb5729a67e0e,
-        type: 3}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: compass
-      value: 
-      objectReference: {fileID: 8330228920421386020, guid: 232c8460cfbcf5b41b89ad0227633289,
-        type: 3}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: hourglass
-      value: 
-      objectReference: {fileID: 7023095344995439645, guid: 055de193629615749ab26e0cdf119088,
-        type: 3}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: dimension
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: playerObject.Array.data[0]
-      value: 
-      objectReference: {fileID: 3925823104840485144, guid: edf163b82dd32a8499e6290e2f67c8f6,
-        type: 3}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: playerObject.Array.data[1]
-      value: 
-      objectReference: {fileID: 2474347398399212056, guid: cab2ef6774c9ec648b5014c680629271,
-        type: 3}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: playerObject.Array.data[2]
-      value: 
-      objectReference: {fileID: 5849516421653435192, guid: 9287b2d1e3a5f1340bb43f8a113f02b2,
-        type: 3}
-    - target: {fileID: 2914302875402414662, guid: 026ff46083f5f9d4e8a1c31468a7cb8b,
-        type: 3}
-      propertyPath: playerObject.Array.data[3]
-      value: 
-      objectReference: {fileID: 2474347398399212056, guid: 8eb911461c7844a4abf304f9662e8b95,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 026ff46083f5f9d4e8a1c31468a7cb8b, type: 3}
 --- !u!1 &1850306891
